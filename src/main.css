@@ -194,7 +194,7 @@ a.button:focus {
 }
 a.button.download {
   margin: 2rem 0 1rem;
-  padding: 0.25rem 0.75rem;
+  padding: 0.15rem 0.75rem;
   display: inline-block;
   text-shadow: none;
 }
