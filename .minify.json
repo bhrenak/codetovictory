@@ -1,0 +1,29 @@
+{
+  "js": {
+      "mangle": true,
+      "mangleClassNames": true,
+      "removeUnusedVariables": true,
+      "removeConsole": false,
+      "removeUselessSpread": true
+  },
+  "html": {
+      "removeComments": true,
+      "removeCommentsFromCDATA": false,
+      "removeCDATASectionsFromCDATA": false,
+      "collapseWhitespace": true,
+      "collapseBooleanAttributes": false,
+      "removeAttributeQuotes": false,
+      "removeRedundantAttributes": true,
+      "useShortDoctype": false,
+      "removeEmptyAttributes": true,
+      "removeEmptyElements": false,
+      "removeOptionalTags": false,
+      "removeScriptTypeAttributes": true,
+      "removeStyleLinkTypeAttributes": true,
+      "minifyJS": true,
+      "minifyCSS": true
+  },
+  "css": {
+      "compatibility": "*"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "codetovictory",
+  "version": "1.0.0",
+  "description": "personal website",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf ./dist && mkdir dist",
+    "build-css": "minify ./src/main.css > ./dist/main.css",
+    "build-js": "minify ./src/main.js > ./dist/main.min.js",
+    "build-html": "minify ./src/index.html > ./dist/index.html",
+    "build-images": "copyfiles -u 1 ./src/img/* ./dist",
+    "build-static": "copyfiles -u 1 ./src/static/* ./dist",
+    "serve": "ws --directory dist",
+    "build": "npm run clean && npm run build-css && npm run build-js && npm run build-html && npm run build-images && npm run build-static && npm run serve"
+  },
+  "author": "Brian Hrenak",
+  "license": "ISC",
+  "dependencies": {
+    "copyfiles": "^2.4.1",
+    "local-web-server": "^5.3.0",
+    "minify": "^11.0.1"
+  }
+}
