@@ -185,6 +185,7 @@ button:hover,
 a.button:hover {
   background: var(--theme-font-accent);
   color: var(--theme-bg-accent);
+  border-color: var(--theme-font-accent);
 }
 button:active,
 a.button:active,
@@ -560,6 +561,9 @@ input.container-toggle:checked + .container {
     border-top: 1px var(--theme-border) solid;
     border-top-left-radius: 0.2rem;
     border-bottom-right-radius: 0;
+  }
+  .theme-toggle button:hover {
+    border-color: var(--theme-font-accent);
   }
 }
 
