@@ -1,7 +1,7 @@
 (() => {
 
   /* NAV */
-  const $navLinks = document.querySelectorAll( 'a' );
+  const $navLinks = document.querySelectorAll('a');
   const $viewBox = document.querySelector('nav > div');
   const $sections = document.querySelectorAll('section');
   const $wrapper = document.querySelector('.wrapper');
@@ -39,9 +39,24 @@
   const resizeViewBox = () => {
     $viewBox.style.height = viewBoxHeight;
   };
-  const moveViewBox = () => {
-    const top = $wrapper.scrollTop/(sumHeight-windowHeight);
-    $viewBox.style.top = `${(windowHeight-$viewBox.offsetHeight)*top}px`;
+  const updateViewBox = () => {
+    const top = $wrapper.scrollTop;
+    const progress = top/(sumHeight-windowHeight);
+    let position = 0;
+    let sum = 0;
+    for (const [index, height] of sectionHeights.entries()) {
+      sum += height;
+      if (top < sum) {
+        if (top + windowHeight < sum) {
+          position = index * 0.25;
+        } else {
+          position = index * 0.25 + (top + windowHeight - sum) / windowHeight * 0.25;
+        }
+        break;
+      }
+    }
+    document.documentElement.style.setProperty('--scroll-position', `${position*-1}s`);
+    $viewBox.style.top = `${(windowHeight-$viewBox.offsetHeight)*progress}px`;
   };
   const setupNav = () => {
     setWindowHeight();
@@ -50,7 +65,7 @@
     setViewBoxHeight();
     resizeNavLinks();
     resizeViewBox();
-    moveViewBox();
+    updateViewBox();
   };
 
   ['load','resize','orientationchange'].forEach( e => {
@@ -61,10 +76,14 @@
       } else {
         setupNav();
       }
+      if (e === 'load') {
+        console.log('hiding');
+        document.querySelector('#overlay').classList.add('hide');
+      }
     });
   });
   $wrapper.addEventListener('scroll', () => {
-    if (!isSmallScreen) moveViewBox();
+    if (!isSmallScreen) updateViewBox();
   });
 
   /* MASONRY */

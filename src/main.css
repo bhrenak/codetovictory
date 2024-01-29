@@ -10,34 +10,6 @@ html {
   box-sizing: inherit;
 }
 
-:root {
-  --transition-timing: 0.15s;
-  --theme-bg-content: #fff;
-  --theme-bg-accent: #f5f5f5;
-  --theme-bg-nav: #e8e8e8;
-  --theme-bg-masonry: #eee;
-  --theme-border: #ccc;
-  --theme-font: #444;
-  --theme-font-accent: #777;
-  --theme-link: #1ba5c9;
-  --theme-bullet: #555;
-  --theme-shadow: #cdcdcd;
-  --theme-shadow-accent: #aaa;
-}
-body.theme-dark {
-  --theme-bg-content: #3f3f3f;
-  --theme-bg-accent: #4a4a4a;
-  --theme-bg-nav: #333;
-  --theme-bg-masonry: #444;
-  --theme-border: #222;
-  --theme-font: #fcfcfc;
-  --theme-font-accent: #eee;
-  --theme-link: #4bd5f9;
-  --theme-bullet: #4bd5f9;
-  --theme-shadow: #2a2a2a;
-  --theme-shadow-accent: #1a1a1a;
-}
-
 body {
   margin: 0;
   background: var(--theme-bg-accent);
@@ -61,10 +33,13 @@ img {
   grid-auto-flow: row;
   grid-template-areas: "a";
 }
+.gap-half {
+  gap: 0.5rem;
+}
 .gap-1 {
   gap: 1rem;
 }
-.gap-1pt5 {
+.gap-1-half {
   gap: 1.5rem;
 }
 .grid > div {
@@ -86,6 +61,21 @@ img {
 }
 .margin-top-1 {
   margin-top: 1rem;
+}
+.margin-top-1-half {
+  margin-top: 1.5rem;
+}
+.color-blue {
+  color: var(--theme-color-blue);
+}
+.color-orange {
+  color: var(--theme-color-orange);
+}
+.color-red {
+  color: var(--theme-color-red);
+}
+.color-green {
+  color: var(--theme-color-green);
 }
 .wrapper {
   max-width: 1440px;
@@ -179,13 +169,14 @@ button, a.button {
   padding: 0.3rem 0.5rem;
   cursor: pointer;
   transition: all var(--transition-timing);
-  margin: 0.5rem 0 0.15rem;
 }
 button:hover,
 a.button:hover {
   background: var(--theme-font-accent);
   color: var(--theme-bg-accent);
   border-color: var(--theme-font-accent);
+  box-shadow: 0 0.15rem 0.5rem var(--theme-border);
+  transform: scale(1.05);
 }
 button:active,
 a.button:active,
@@ -246,6 +237,13 @@ nav div {
   border-radius: 0.5rem 0 0 0.5rem;
   box-shadow: var(--theme-shadow) 0px 0px 6px 2px;
   transition: background-color var(--transition-timing);
+  border-left-width: 0.25rem;
+  border-left-style: solid;
+  animation-duration: 1s;
+  animation-name: change-nav-color;
+  animation-play-state: paused;
+  animation-delay: var(--scroll-position, 0);
+  animation-timing-function: linear;
 }
 nav div::before {
   content: '';
@@ -279,6 +277,20 @@ main {
 main section {
   padding: 1rem;
   border-bottom: 1px var(--theme-border) solid;
+}
+.section-heading h2 {
+  flex-grow: 1;
+}
+.section-heading svg {
+  height: 36px;
+  width: 30px;
+  filter: drop-shadow(0.05rem 0.05rem 0 var(--theme-shadow));
+}
+.section-heading button {
+  margin: 0 0 0.15rem 1rem;
+}
+.section-heading button {
+  align-self: flex-end;
 }
 .container-heading {
   background: var(--theme-bg-accent);
@@ -351,6 +363,7 @@ input.container-toggle:checked + .container {
   border-top: none;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  transform-origin: center right;
 }
 .theme-toggle svg {
   width: 20px;
@@ -369,11 +382,6 @@ input.container-toggle:checked + .container {
   opacity: 1;
 }
 .masonry > div {
-  box-shadow: var(--theme-shadow) 0 0 6px 0px;
-  color: #999;
-  background: var(--theme-bg-masonry);
-  border: 5px var(--theme-bg-content) solid;
-  border-radius: 5px;
   position: relative;  
 }
 .masonry > div:first-child {
@@ -403,32 +411,85 @@ input.container-toggle:checked + .container {
 .masonry > div:nth-child(9) {
   grid-area: 2 / 5 / 2 / 7;
 }
-.masonry.active > div:first-child,
-.masonry.active > div:nth-child(3),
-.masonry.active > div:nth-child(9) {
-  animation: 10s infinite change-color;
+.masonry.active > div:first-child > div,
+.masonry.active > div:nth-child(3) > div,
+.masonry.active > div:nth-child(9) > div {
+  animation: 10s infinite change-bg-color;
 }
 .masonry > div > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: var(--theme-shadow) 0 0 6px 0px;
+  color: #999;
+  background: var(--theme-bg-masonry);
+  border: 5px var(--theme-bg-content) solid;
+  border-radius: 5px;
+}
+.masonry > div > div > div {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
   white-space: nowrap;
   font-weight: bold;
+  backface-visibility: hidden;
 }
-.masonry > div > div > div {
+.masonry > div.flip > div {
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+.masonry > div.flip:hover > div {
+  transform: rotateX( 180deg );
+  transition: transform 0.5s;
+}
+.masonry > div.flip > div > div.back {
+  transform: rotateX( 180deg );
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: var(--theme-bg-masonry);
+}
+.masonry > div.flip > div > div.back svg {
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  filter: drop-shadow(0.15rem 0.15rem 0 var(--theme-border));
+}
+.masonry > div > div > div > div  {
   display: flex;
 }
-.masonry > div > div > div > span {
+.masonry > div > div > div > div > span {
   display: flex;
 }
-.masonry > div > div > div > span:not(.keystone) {
+.masonry > div > div > div > div > span:not(.keystone) {
   opacity: 0;
   overflow: hidden;
   font-weight: normal;
 }
 
-@keyframes change-color {
+@keyframes change-nav-color {
+  0% {
+    border-color: var(--theme-color-orange);
+  }
+  25% {
+    border-color: var(--theme-color-blue);
+  }
+  50% {
+    border-color: var(--theme-color-red);
+  }
+  75% {
+    border-color: var(--theme-color-green);
+  }
+}
+
+@keyframes change-bg-color {
   0% {
     background: var(--theme-bg-masonry);
     color: #999;
@@ -521,12 +582,12 @@ input.container-toggle:checked + .container {
     flex: auto;
     font-size: 1.75rem;
     line-height: 1.55em;
-    padding: 0 0 0 0.85rem;
+    padding: 0 0 0 1.5rem;
     border: none;
   }
   nav a:hover {
-    font-size: 2rem;
-    line-height: 2.5rem;
+    font-size: 1.85rem;
+    line-height: 2rem;
   }
   nav span {
     display: flex;
@@ -537,19 +598,25 @@ input.container-toggle:checked + .container {
   }
   main {
     width: calc(100% - 200px);
-    z-index: 2;
   }
   main section {
     padding: 2rem;
+  }
+  .section-heading svg {
+    height: 48px;
+    width: 42px;
+  }
+  .section-heading h2 {
+    flex-grow: unset;
+  }
+  .section-heading button {
+    margin: 0 0 0.25rem 1rem;
   }
   input.container-toggle {
     margin-top: -1.075rem;
   }
   h2 {
     font-size: 3rem;
-  }
-  button {
-    margin: 1.15rem 0 0.2rem;
   }
   .theme-toggle {
     top: 1rem;
