@@ -8,54 +8,21 @@
     <meta name="description" content="Brian Hrenak is a Technical Manager with over 15 years experience specializing in UI/UX and web development.">
     <meta name="keywords" content="Brian Hrenak, Technical Manager, UI/UX, web development">
     <meta name="robots" content="index,follow">
-    <link rel="stylesheet" href="/main.css">
+    <link rel="preload" href="/main.css" as="style" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/main.css">
     <style>
-      :root {
-        --transition-timing: 0.15s;
-        --theme-color-blue: #2bb5d9;
-        --theme-color-orange: #f94;
-        --theme-color-red: #F07167;
-        --theme-color-green: #7eb963;
-        --theme-bg-content: #fff;
-        --theme-bg-accent: #f5f5f5;
-        --theme-bg-nav: #e8e8e8;
-        --theme-bg-masonry: #eee;
-        --theme-border: #ccc;
-        --theme-font: #444;
-        --theme-font-accent: #777;
-        --theme-link: #1ba5c9;
-        --theme-bullet: #2bb5d9;
-        --theme-shadow: #cdcdcd;
-        --theme-shadow-accent: #aaa;
-      }
-      body.theme-dark {
-        --theme-color-blue: #bef;
-        --theme-color-orange: #fd9;
-        --theme-color-red: #Fe7f74;
-        --theme-color-green: #83cd61;
-        --theme-bg-content: #3f3f3f;
-        --theme-bg-accent: #4a4a4a;
-        --theme-bg-nav: #333;
-        --theme-bg-masonry: #444;
-        --theme-border: #222;
-        --theme-font: #fcfcfc;
-        --theme-font-accent: #eee;
-        --theme-link: #4bd5f9;
-        --theme-bullet: #4bd5f9;
-        --theme-shadow: #2a2a2a;
-        --theme-shadow-accent: #1a1a1a;
-      }
       #overlay {
         position: fixed;
+        overflow: hidden;
         top: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
-        z-index: 2;
-        background: var(--theme-color-orange);
+        z-index: 99;
+        background: #f94;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -69,6 +36,28 @@
       #overlay.hide {
         animation: 0.45s hide-overlay forwards;
       }
+      .loader {
+        width: fit-content;
+        font-weight: bold;
+        font-family: monospace;
+        font-size: 30px;
+        background: radial-gradient(circle closest-side,#b50 94%,#0000) right/225% 100%;
+        animation: loader 1s infinite linear;
+      }
+      .loader::before {
+        content: "Loading...";
+        line-height: 1.5em;
+        color: #0000;
+        background: inherit;
+        background-image: radial-gradient(circle closest-side,#fff 94%,#b50);
+        -webkit-background-clip:text;
+                background-clip:text;
+      }
+
+      @keyframes loader {
+        100% { background-position: left }
+      }
+
       @keyframes hide-overlay {
         0% {
           opacity: 1;
@@ -85,11 +74,12 @@
           height: 0;
           width: 0;
           display: none;
+          padding: 0;
         }
       }
     </style>
   </head>
-  <body>
+  <body class="theme-dark">
     <div class="wrapper">
       <nav>
         <div></div>
@@ -106,7 +96,7 @@
           </button>
         </div>
         <section id="hello">
-          <div class="section-heading flex gap-half margin-top-1">
+          <div class="section-heading flex nowrap gap-half margin-top-1">
             <?xml version="1.0" encoding="iso-8859-1"?>
             <svg fill="currentColor" class="color-orange" height="48px" width="48px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
               viewBox="0 0 473.081 473.081" xml:space="preserve">
@@ -218,131 +208,145 @@
             <div><div><div><div><span>.cool-</span><span class="keystone">CSS</span><span style="color:#4bd5f9">&nbsp;{</span><span style="color:#fd9">&nbsp;animation-name</span><span style="color:#eee">:&nbsp;</span><span style="color:#f94">"wow"</span><span style="color:#eee">;</span><span style="color:#4bd5f9">&nbsp;}</span></span></div></div></div></div>
           </div>
         </section>
-        <section id="skills">
+        <section id="skills" class="bullet-blue">
           <div class="section-heading flex gap-half">
             <?xml version="1.0"?><svg width="48px" height="48px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="color-blue"><path d="M29.532 25.76l-5.655-5.655 0.754-0.754-0.754-0.754-2.261 2.261-3.771-3.77 4.53-4.532c0.603 0.215 1.234 0.324 1.882 0.324 1.493 0 2.897-0.582 3.954-1.637 1.63-1.631 2.092-4.054 1.178-6.174l-0.311-0.722-2.43 2.43-1.956 0.027 0.026-1.866 2.477-2.477-0.72-0.312c-0.706-0.306-1.457-0.461-2.229-0.461-1.494 0-2.897 0.582-3.952 1.637-1.546 1.545-2.043 3.802-1.311 5.84l-4.529 4.529-6.409-6.408 0.754-0.754-4.145-4.146-2.264 2.261 4.147 4.147 0.753-0.754 6.409 6.408-4.529 4.529c-0.605-0.217-1.239-0.326-1.888-0.326-1.493 0-2.897 0.582-3.953 1.637-1.633 1.632-2.095 4.059-1.176 6.181l0.312 0.72 2.477-2.477 1.865-0.025-0.027 1.956-2.43 2.43 0.722 0.311c0.704 0.303 1.452 0.458 2.221 0.458 1.494 0 2.897-0.581 3.952-1.636 1.544-1.544 2.041-3.799 1.314-5.833l4.532-4.532 3.771 3.769-2.263 2.263 0.754 0.754 0.754-0.754 5.654 5.654c0.503 0.504 1.174 0.781 1.885 0.781s1.381-0.277 1.885-0.781c1.039-1.039 1.039-2.73-0-3.769zM3.899 4.648l0.754-0.753 2.638 2.638-0.754 0.754-2.639-2.639zM11.448 22.456c0.739 1.716 0.364 3.679-0.955 4.999-0.854 0.854-1.989 1.324-3.198 1.324-0.347 0-0.689-0.039-1.021-0.116l1.569-1.569 0.047-3.485-3.394 0.046-1.619 1.619c-0.356-1.51 0.081-3.103 1.208-4.229 0.854-0.854 1.99-1.325 3.199-1.325 0.626 0 1.233 0.125 1.806 0.373l0.333 0.144 10.819-10.819-0.144-0.333c-0.744-1.719-0.37-3.682 0.952-5.004 0.854-0.854 1.99-1.325 3.198-1.325 0.35 0 0.695 0.040 1.030 0.117l-1.618 1.618-0.047 3.394 3.485-0.047 1.57-1.57c0.352 1.507-0.086 3.097-1.209 4.221-0.855 0.854-1.991 1.325-3.2 1.325-0.624 0-1.23-0.125-1.801-0.371l-0.332-0.143-10.821 10.823 0.143 0.332zM28.779 28.775c-0.302 0.302-0.704 0.469-1.131 0.469s-0.829-0.167-1.131-0.469l-5.654-5.654 2.262-2.262 5.655 5.655c0.624 0.624 0.624 1.638 0.001 2.261z" fill="currentColor"></path></svg>
             <h2>Skills</h2>
             <button class="section-toggle">+/- All</button>
           </div>
-          <label for="skill_1"><h3 class="container-heading margin-top-1">Browser</h3></label>
-          <input type="checkbox" class="container-toggle" id="skill_1" name="skill_1">
-          <div class="container grid col-3 equal-col gap-1 padding-1">
-            <div>
-              <h4>JavaScript &amp; TypeScript</h4>
-              <ul>
-                <li>Object oriented and functional patterns</li>
-                <li>Inheritance and closure</li>
-                <li>Asynchronous programming and events</li>
-                <li>ECMAScript</li>
-                <li>AJAX, REST, API</li>
-            </div>
-            <div>
-              <h4>HTML</h4>
-              <ul>
-                <li>Semantic elements</li>
-                <li>Custom elements and web components</li>
-                <li>Accessibility Standards</li>
-                <li>Reflow, repaint, and rasterization</li>
-                <li>SEO and Social optimization</li>
-            </div>
-            <div>
-              <h4>CSS</h4>
-              <ul>
-                <li>Box model</li>
-                <li>Responsive design</li>
-                <li>Flexbox and grid layouts</li>
-                <li>Transforms, transitions, and animations</li>
-                <li>CSS variables</li>
-            </div>
-            <div>
-              <h4>HTTP</h4>
-              <ul>
-                <li>POST, GET, PUT, PATCH, DELETE</li>
-                <li>Headers, CORS, CSP</li>
-                <li>HTTP/2</li>
-                <li>SSL and cert negotiation</li>
-            </div>
-            <div>
-              <h4>Page Optimization</h4>
-              <ul>
-                <li>Document parsing and resource ordering</li>
-                <li>Blocking, async, and deferred resource loading</li>
-                <li>Efficient DOM manipulation</li>
-                <li>Resource compression and optimization</li>
-                <li>Optimizing LCP, CLS, TTI, and other vitals</li>
-            </div>
-            <div>
-              <h4>Security Standards</h4>
-              <ul>
-                <li>XSS and input validation</li>
-                <li>Data encryption</li>
-                <li>Exception management</li>
-                <li>Renovate and dependency maintenance</li>
+          <div class="container draw margin-top-1">
+            <input type="checkbox" class="container-toggle" id="skill_1" name="skill_1">
+            <label for="skill_1"><h3 class="container-heading"><span>Browser</span></h3><span class="container-indicator"></span></label>
+            <div class="container-content">
+              <div class="grid col-3 equal-col gap-1 padding-1">
+                <div>
+                  <h4>JavaScript &amp; TypeScript</h4>
+                  <ul>
+                    <li>Object oriented and functional patterns</li>
+                    <li>Inheritance and closure</li>
+                    <li>Asynchronous programming and events</li>
+                    <li>ECMAScript</li>
+                    <li>AJAX, REST, API</li>
+                </div>
+                <div>
+                  <h4>HTML</h4>
+                  <ul>
+                    <li>Semantic elements</li>
+                    <li>Custom elements and web components</li>
+                    <li>Accessibility Standards</li>
+                    <li>Reflow, repaint, and rasterization</li>
+                    <li>SEO and Social optimization</li>
+                </div>
+                <div>
+                  <h4>CSS</h4>
+                  <ul>
+                    <li>Box model</li>
+                    <li>Responsive design</li>
+                    <li>Flexbox and grid layouts</li>
+                    <li>Transforms, transitions, and animations</li>
+                    <li>CSS variables</li>
+                </div>
+                <div>
+                  <h4>HTTP</h4>
+                  <ul>
+                    <li>POST, GET, PUT, PATCH, DELETE</li>
+                    <li>Headers, CORS, CSP</li>
+                    <li>HTTP/2</li>
+                    <li>SSL and cert negotiation</li>
+                </div>
+                <div>
+                  <h4>Page Optimization</h4>
+                  <ul>
+                    <li>Document parsing and resource ordering</li>
+                    <li>Blocking, async, and deferred resource loading</li>
+                    <li>Efficient DOM manipulation</li>
+                    <li>Resource compression and optimization</li>
+                    <li>Optimizing LCP, CLS, TTI, and other vitals</li>
+                </div>
+                <div>
+                  <h4>Security Standards</h4>
+                  <ul>
+                    <li>XSS and input validation</li>
+                    <li>Data encryption</li>
+                    <li>Exception management</li>
+                    <li>Renovate and dependency maintenance</li>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="grid gap-1 equal-col">
-            <div>
-              <label for="skill_2"><h3 class="container-heading">Tooling</h3></label>
+          <div class="grid gap-1 equal-col margin-top-1">
+            <div class="container draw">
               <input type="checkbox" class="container-toggle" id="skill_2" name="skill_2">
-              <div class="container padding-1">
-                <ul>
-                  <li>git &amp; GitHub</li>
-                  <li>NodeJS &amp; npm</li>
-                  <li>Gulp &amp; Grunt</li>
-                  <li>shell scripting</li>
-                </ul>
+              <label for="skill_2"><h3 class="container-heading"><span>Tooling</span></h3><span class="container-indicator"></span></label>
+              <div class="container-content">
+                <div class="padding-1">
+                  <ul>
+                    <li>git &amp; GitHub</li>
+                    <li>NodeJS &amp; npm</li>
+                    <li>Gulp &amp; Grunt</li>
+                    <li>shell scripting</li>
+                  </ul>
+                </div>
               </div>
             </div>
-            <div>
-              <label for="skill_3"><h3 class="container-heading">Frameworks</h3></label>
+            <div class="container draw">
               <input type="checkbox" class="container-toggle" id="skill_3" name="skill_3">
-              <div class="container padding-1">
-                <ul>
-                  <li>React</li>
-                  <li>Angular</li>
-                  <li>HUGO</li>
-                  <li>TailwindCSS</li>
-                </ul>
+              <label for="skill_3"><h3 class="container-heading"><span>Frameworks</span></h3><span class="container-indicator"></span></label>
+              <div class="container-content">
+                <div class="padding-1">
+                  <ul>
+                    <li>React</li>
+                    <li>Angular</li>
+                    <li>HUGO</li>
+                    <li>TailwindCSS</li>
+                  </ul>
+                </div>
               </div>
             </div>
-            <div>
-              <label for="skill_4"><h3 class="container-heading">Database</h3></label>
+            <div class="container draw">
               <input type="checkbox" class="container-toggle" id="skill_4" name="skill_4">
-              <div class="container padding-1">
-                <ul>
-                  <li>SQL &amp; PL/SQL</li>
-                  <li>RDMS</li>
-                  <li>Oracle APEX</li>
-                  <li>OBIEE</li>
-                </ul>
+              <label for="skill_4"><h3 class="container-heading"><span>Database</span></span></h3><span class="container-indicator"></span></label>
+              <div class="container-content">
+                <div class="padding-1">
+                  <ul>
+                    <li>SQL &amp; PL/SQL</li>
+                    <li>RDMS</li>
+                    <li>Oracle APEX</li>
+                    <li>OBIEE</li>
+                  </ul>
+                </div>
               </div>
             </div>
-            <div>
-              <label for="skill_5"><h3 class="container-heading">CI/CD</h3></label>
+            <div class="container draw">
               <input type="checkbox" class="container-toggle" id="skill_5" name="skill_5">
-              <div class="container padding-1">
-                <ul>
-                  <li>Jenkins</li>
-                  <li>Docker</li>
-                  <li>Ansible</li>
-                </ul>
+              <label for="skill_5"><h3 class="container-heading"><span>CI/CD</span></h3><span class="container-indicator"></span></label>
+              <div class="container-content">
+                <div class="padding-1">
+                  <ul>
+                    <li>Jenkins</li>
+                    <li>Docker</li>
+                    <li>Ansible</li>
+                  </ul>
+                </div>
               </div>
             </div>
-            <div>
-              <label for="skill_6"><h3 class="container-heading">Process</h3></label>
+            <div class="container draw">
               <input type="checkbox" class="container-toggle" id="skill_6" name="skill_6">
-              <div class="container padding-1">
-                <ul>
-                  <li>Agile scrum</li>
-                  <li>Jira</li>
-                  <li>Confluence</li>
-                  <li>Release planning</li>
-                </ul>
+              <label for="skill_6"><h3 class="container-heading"><span>Process</span></h3><span class="container-indicator"></span></label>
+              <div class="container-content">
+                <div class="padding-1">
+                  <ul>
+                    <li>Agile scrum</li>
+                    <li>Jira</li>
+                    <li>Confluence</li>
+                    <li>Release planning</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </section>
-        <section id="experience">
+        <section id="experience" class="bullet-red">
           <div class="section-heading flex gap-half">
             <svg version="1.1" id="Uploaded to svgrepo.com" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48px" height="48px" viewBox="0 0 32 32" xml:space="preserve" class="color-red">
               <path fill="currentColor" d="M6.5,17h9.55c0.245,1.694,1.688,3,3.45,3s3.205-1.306,3.45-3h2.55c1.223,0,2.239-0.884,2.454-2.046 C29.67,14.729,31,13.277,31,11.5s-1.33-3.229-3.046-3.454C27.739,6.884,26.723,6,25.5,6h-6.55c-0.245-1.694-1.688-3-3.45-3
@@ -360,81 +364,101 @@
                 C6,22.327,5.327,23,4.5,23S3,22.327,3,21.5S3.673,20,4.5,20S6,20.673,6,21.5z"/>
             </svg>
             <h2>Experience</h2>
-            <button class="section-toggle">+/- All</button>
+            <button class="section-toggle" data-collapsed="true">+/- All</button>
           </div>
-          <label for="exp_1"><h3 class="container-heading margin-top-1">Technical Manager, Product Engineering</h3></label>
-          <input type="checkbox" class="container-toggle" id="exp_1" name="exp_1">
-          <div class="container padding-1">
-            <h4>Verisign Inc.</h4>
-            <i>2018 - Present</i>
-            <p>Management of the Corporate Web Development Team, consisting of 6 direct reports responsible for high visibility web properties essential to marketing and strategic communication initiatives.</p>
-            <h4>Key Accomplishments</h4>
-            <ul>
-              <li>Restructured team workflow and release processes to reduce defect rate by 76% over one year period.</li>
-              <li>Transitioned all projects to use common tooling and architecture.</li>
-              <li>Integrated github-based CMS to empower business owners to update content.</li>
-              <li>Completed successful rebuild of the 250 page corporate website and foundational components within 8-month planned timeframe.</li>
-              <li>Fostered growth of individual contributors through mentorship and cross-training, developing several junior web developers into seasoned full-stack and DevOps engineers.</li>
-            </ul>
+          <div class="container draw margin-top-1">
+            <input type="checkbox" class="container-toggle" id="exp_1" name="exp_1">
+            <label for="exp_1"><h3 class="container-heading"><span>Technical Manager, Product Engineering</span></h3><span class="container-indicator"></span></label>
+            <div class="container-content">
+              <div class="padding-1">
+                <h4>Verisign Inc.</h4>
+                <i>2018 - Present</i>
+                <p>Management of the Corporate Web Development Team, consisting of 5 direct reports responsible for high visibility web properties essential to marketing and strategic communication initiatives.</p>
+                <h4>Key Accomplishments</h4>
+                <ul>
+                  <li>Restructured team workflow and release processes to reduce defect rate by 76% over one year period.</li>
+                  <li>Transitioned all projects to use common tooling and architecture.</li>
+                  <li>Integrated GitHub-based CMS to empower business owners to update content.</li>
+                  <li>Completed successful rebuild of the 250 page corporate website and foundational components within 8-month planned timeframe.</li>
+                  <li>Fostered growth of individual contributors through mentorship and cross-training, developing several junior web developers into seasoned full-stack and DevOps engineers.</li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <label for="exp_2"><h3 class="container-heading margin-top-1">Web Developer Level IV</h3></label>
-          <input type="checkbox" class="container-toggle" id="exp_2" name="exp_2">
-          <div class="container padding-1">
-            <h4>Verisign Inc.</h4>
-            <i>2014 - 2018</i>
-            <p>Lead Front End Developer for Verisign public web properties, including the primary corporate website and associated microsites as well as web application products.</p>
-            <h4>Key Accomplishments</h4>
-            <ul>
-              <li>Developed of new features and pages for <a href="https://verisign.com" target="_blank">verisign.com</a>, working closely with Design, Requirements, and stakeholder teams.</li> 
-              <li>Served as front end lead for prototype and initial release stages of <a href="https://namestudio.com" target="_blank">NameStudio</a> product, which grew into a new team and value channel.</li>
-              <li>Lead front end developer for the Verisign DNS Firewall Portal, including development of a data repository framework to bind and manage application state.</li>
-              <li>Primary developer for the #InternetOfficial marketing campaign, including integration of an entry form with a 3rd-party contest management service.</li>
-            </ul>
+          <div class="container draw margin-top-1">
+            <input type="checkbox" class="container-toggle" id="exp_2" name="exp_2" checked>
+            <label for="exp_2"><h3 class="container-heading"><span>Web Developer Level IV</span></h3><span class="container-indicator"></span></label>
+            <div class="container-content">
+              <div class="padding-1">
+                <h4>Verisign Inc.</h4>
+                <i>2014 - 2018</i>
+                <p>Lead Front End Developer for Verisign public web properties, including the primary corporate website and associated microsites as well as web application products.</p>
+                <h4>Key Accomplishments</h4>
+                <ul>
+                  <li>Developed new features and pages for <a href="https://verisign.com" target="_blank">verisign.com</a>, working closely with Design, Requirements, and stakeholder teams.</li> 
+                  <li>Served as front end lead for prototype and initial release stages of <a href="https://namestudio.com" target="_blank">NameStudio</a> product, which grew into a new team and value channel.</li>
+                  <li>Lead front end developer for the Verisign DNS Firewall Portal, including development of a data repository framework to bind and manage application state.</li>
+                  <li>Primary developer for the #InternetOfficial marketing campaign, including integration of an entry form with a 3rd-party contest management service.</li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <label for="exp_3"><h3 class="container-heading margin-top-1">Database Application Developer</h3></label>
-          <input type="checkbox" class="container-toggle" id="exp_3" name="exp_3">
-          <div class="container padding-1">
-            <h4>Appsential LLC</h4>
-            <i>2010 - 2014</i>
-            <p>Application and data visualization development as a contractor for the U.S. Department of Energy's iManage program.</p>
-            <h4>Key Accomplishments</h4>
-            <ul>
-              <li>Developed database applications using Oracle Application Express to facilitate HR and Budgeting initiatives.</li>
-              <li>Created of reports, dashboards, and data visualizations using Oracle Business Intelligence Enterprise Edition (OBIEE).</li>
-              <li>Served as OBIEE Admin, managing security groups and the creation of new data sources and views.</li>
-              <li>Integrated new visualization libraries into OBIEE report views.</li>
-              <li>Developed bespoke visualizations and dashboards, including a custom homepage for OBIEE which was rolled out to all Department employees.</li>
-            </ul>
+          <div class="container draw margin-top-1">
+            <input type="checkbox" class="container-toggle" id="exp_3" name="exp_3" checked>
+            <label for="exp_3"><h3 class="container-heading"><span>Database Application Developer</span></h3><span class="container-indicator"></span></label>
+            <div class="container-content">
+              <div class="padding-1">
+                <h4>Appsential LLC</h4>
+                <i>2010 - 2014</i>
+                <p>Application and data visualization development as a contractor for the U.S. Department of Energy's iManage program.</p>
+                <h4>Key Accomplishments</h4>
+                <ul>
+                  <li>Developed database applications using Oracle Application Express to facilitate HR and Budgeting initiatives.</li>
+                  <li>Created reports, dashboards, and data visualizations using Oracle Business Intelligence Enterprise Edition (OBIEE).</li>
+                  <li>Served as OBIEE Admin, managing security groups and the creation of new data sources and views.</li>
+                  <li>Integrated new visualization libraries into OBIEE report views.</li>
+                  <li>Developed bespoke visualizations and dashboards, including a custom homepage for OBIEE which was rolled out to all Department employees.</li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <label for="exp_4"><h3 class="container-heading margin-top-1">Federal Internship</h3></label>
-          <input type="checkbox" class="container-toggle" id="exp_4" name="exp_4">
-          <div class="container padding-1">
-            <h4>U.S. Dept. of Homeland Security</h4>
-            <i>2008 - 2009</i>
-            <p>Internship with the Acquisitions and Program Management Branch of the US-VISIT program.</p>
-            <h4>Key Accomplishments</h4>
-            <ul>
-              <li>Developed a task management application in Visual Basic for Excel which included the programatic generation of a data visualization dashboard.</li>
-              <li>Collaborated with Budgeting Office to iteratively improve the application, resulting in full adoption within their standard reporting process.</li>
-              <li>Obtained Federal background check and Suitability Clearance</li>
-            </ul>
+          <div class="container draw margin-top-1">
+            <input type="checkbox" class="container-toggle" id="exp_4" name="exp_4" checked>
+            <label for="exp_4"><h3 class="container-heading"><span>Federal Internship</span></h3><span class="container-indicator"></span></label>
+            <div class="container-content">
+              <div class="padding-1">
+                <h4>U.S. Dept. of Homeland Security</h4>
+                <i>2008 - 2009</i>
+                <p>Internship with the Acquisitions and Program Management Branch of the US-VISIT program.</p>
+                <h4>Key Accomplishments</h4>
+                <ul>
+                  <li>Developed a task management application in Visual Basic for Excel which included the programatic generation of a data visualization dashboard.</li>
+                  <li>Collaborated with Budgeting Office to iteratively improve the application, resulting in full adoption within their standard reporting process.</li>
+                  <li>Obtained Federal background check and Suitability Clearance</li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <label for="exp_5"><h3 class="container-heading margin-top-1">Assistant Store Manager</h3></label>
-          <input type="checkbox" class="container-toggle" id="exp_5" name="exp_5">
-          <div class="container padding-1">
-            <h4>Advance Auto Parts</h4>
-            <i>2005 - 2008</i>
-            <p>A formational experience which taught me how to align a team to common goals and invest in a mission, while balancing working towards my degree at the same time.</p>
-            <h4>Key Accomplishments</h4>
-            <ul>
-              <li>Shift Manager for a large store with twelve staff, a delivery service, and up to $1 million in inventory.</li>
-              <li>Streamlined customer experience through checkout process improvement and strategic staff assignment.</li>
-              <li>Instituted various contests and competitions for employees to motivate and reward measurable performance goal attainment.</li>
-              <li>Served as interim Store Manager for three months during which the store surpassed all sales and cost goals.</li>
-            </ul>
+          <div class="container draw margin-top-1">
+            <input type="checkbox" class="container-toggle" id="exp_5" name="exp_5" checked>
+            <label for="exp_5"><h3 class="container-heading"><span>Assistant Store Manager</span></h3><span class="container-indicator"></span></label>
+            <div class="container-content">
+              <div class="padding-1">
+                <h4>Advance Auto Parts</h4>
+                <i>2005 - 2008</i>
+                <p>A formational experience which taught me how to align a team to common goals and invest in a mission, while balancing working towards my degree at the same time.</p>
+                <h4>Key Accomplishments</h4>
+                <ul>
+                  <li>Shift Manager for a large store with twelve staff, a delivery service, and up to $1 million in inventory.</li>
+                  <li>Streamlined customer experience through checkout process improvement and strategic staff assignment.</li>
+                  <li>Instituted various contests and competitions for employees to motivate and reward measurable performance goal attainment.</li>
+                  <li>Served as interim Store Manager for three months during which the store surpassed all sales and cost goals.</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </section>
-        <section id="background">
+        <section id="background" class="bullet-green">
           <div class="section-heading flex gap-half">
             <?xml version="1.0" encoding="iso-8859-1"?>
             <svg fill="currentColor" class="color-green" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -484,51 +508,61 @@
             <button class="section-toggle">+/- All</button>
           </div>
           <div class="grid gap-1 margin-top-1">
-            <div>
-              <label for="bg_1"><h3 class="container-heading">Education</h3></label>
+            <div class="container draw">
               <input type="checkbox" class="container-toggle" id="bg_1" name="bg_1">
-              <div class="container padding-1">
-                <h4>George Mason University</h4>
-                <p>Fairfax, VA</p>
-                <i>December, 2009</i>
-                <p>Bachelor of Science in Information Systems and Operations Management</p>
+              <label for="bg_1"><h3 class="container-heading"><span>Education</span></h3><span class="container-indicator"></span></label>
+              <div class="container-content">
+                <div class="padding-1">
+                  <h4>George Mason University</h4>
+                  <p>Fairfax, VA</p>
+                  <i>December, 2009</i>
+                  <p>Bachelor of Science in Information Systems and Operations Management</p>
+                </div>
               </div>
             </div>
-            <div>
-              <label for="bg_2"><h3 class="container-heading">Interests/Hobbies</h3></label>
+            <div class="container draw">
               <input type="checkbox" class="container-toggle" id="bg_2" name="bg_2">
-              <div class="container padding-1">
-                <h4>Eagle Scout</h4>
-                <p>Boy Scouts of America</p>
-                <h4>1st Degree Black Belt</h4>
-                <p>Tae Kwon Do</p>
+              <label for="bg_2"><h3 class="container-heading"><span>Interests/Hobbies</span></h3><span class="container-indicator"></span></label>
+              <div class="container-content">
+                <div class="padding-1">
+                  <h4>Eagle Scout</h4>
+                  <p>Boy Scouts of America</p>
+                  <h4>1st Degree Black Belt</h4>
+                  <p>Tae Kwon Do</p>
+                </div>
               </div>
             </div>
-            <div>
-              <label for="bg_3"><h3 class="container-heading">Contact</h3></label>
+            <div class="container draw">
               <input type="checkbox" class="container-toggle" id="bg_3" name="bg_3">
-              <div class="container padding-1">
-                <p><a href="mailto:bhrenak@gmail.com">bhrenak@gmail.com</a></p>
-                <p><a href="tel:+17035979729">+1 703.597.9729</a></p>
+              <label for="bg_3"><h3 class="container-heading"><span>Contact</span></h3><span class="container-indicator"></span></label>
+              <div class="container-content">
+                <div class="padding-1">
+                  <p><a href="mailto:bhrenak@gmail.com">bhrenak@gmail.com</a></p>
+                  <p><a href="tel:+17035979729">+1 703.597.9729</a></p>
+                </div>
               </div>
             </div>
           </div>
-          <label for="bg_4"><h3 class="container-heading margin-top-1">About</h3></label>
-          <input type="checkbox" class="container-toggle" id="bg_4" name="bg_4">
-          <div class="container padding-1 grid gap-1-half">
-            <picture class="headshot">
-              <img src="/img/headshot.png" width="400" height="310" loading="lazy" alt="Headshot"/>
-            </picture>
-            <div>
-              <p>Born and raised in the Washington D.C. region, I have also lived briefly in New York and South Carolina, and travelled overseas throughout Europe. I have always been fascinated by the intersection where engineering meets design, particularly the way in which thoughtful navigation of those concerns can foster innovation, quality, and efficiency in technology and products used across all domains of modern life. Initially focussing my studies on mechanical and civil engineering, I eventually followed my passions into software where the same problem solving approach could be applied more rapidly, independently, and iteratively to produce results.</p>
-              <p>A previous version of this homepage along with links to earlier project pages can be found <a href="/archive/v2/index.html">here</a>.</p>
+          <div class="container draw margin-top-1">
+            <input type="checkbox" class="container-toggle" id="bg_4" name="bg_4">
+            <label for="bg_4"><h3 class="container-heading"><span>About</span></h3><span class="container-indicator"></span></label>
+            <div class="container-content">
+              <div class="padding-1 grid gap-1">
+                <picture class="headshot">
+                  <img src="/img/headshot.png" width="400" height="310" alt="Headshot"/>
+                </picture>
+                <div>
+                  <p>Born and raised in the Washington D.C. region, I have also lived briefly in New York and South Carolina, and travelled overseas throughout Europe. I have always been fascinated by the confluence of engineering and design, particularly the way in which thoughtful navigation of both perspectives can foster innovation, quality, and efficiency in technology and products used across all domains of modern life. Initially focusing my studies on mechanical and civil engineering, I eventually followed my passions into software where the same problem solving approach could be applied more rapidly, independently, and iteratively to produce results.</p>
+                  <p>A previous version of this homepage along with links to earlier project pages can be found <a href="/archive/v2/index.html">here</a>.</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
       </main>
     </div>
     <div id="overlay">
-      <span>LOADING RESOURCES</span>
+      <div class="loader"></div>
     </div>
     <script src="/main.min.js" defer></script>
   </body>

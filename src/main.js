@@ -1,10 +1,11 @@
 (() => {
 
   /* NAV */
-  const $navLinks = document.querySelectorAll('a');
+  const $nav = document.querySelector('nav');
+  const $navLinks = $nav.querySelectorAll('a');
   const $viewBox = document.querySelector('nav > div');
+  const $body = document.documentElement || document.body;
   const $sections = document.querySelectorAll('section');
-  const $wrapper = document.querySelector('.wrapper');
 
   let windowHeight = window.innerHeight;
   let sectionHeights = [];
@@ -12,19 +13,13 @@
   let viewBoxHeight = 0;
   let isSmallScreen = document.body.clientWidth < 768;
 
-  const setWindowHeight = () => {
+  const setState = () => {
     windowHeight = window.innerHeight;
-  }
-  const setSectionHeights = () => {
     sectionHeights = [...$sections].map( $section => $section.offsetHeight );
-  };
-  const setSumHeight = () => {
     sumHeight = sectionHeights.reduce((a,b) => a + b);
-  };
-  const setViewBoxHeight = () => {
     viewBoxHeight = `${windowHeight/sumHeight*100}vh`;
+    isSmallScreen = document.body.clientWidth < 768;
   };
-
   const resizeNavLinks = () => {
     sectionHeights.forEach( (height, index) => {
       const h = `${height/sumHeight*100}vh`;
@@ -40,29 +35,25 @@
     $viewBox.style.height = viewBoxHeight;
   };
   const updateViewBox = () => {
-    const top = $wrapper.scrollTop;
-    const progress = top/(sumHeight-windowHeight);
+    const top = $body.scrollTop;
+    const progress = top / (sumHeight-windowHeight);
     let position = 0;
     let sum = 0;
     for (const [index, height] of sectionHeights.entries()) {
       sum += height;
       if (top < sum) {
-        if (top + windowHeight < sum) {
-          position = index * 0.25;
-        } else {
-          position = index * 0.25 + (top + windowHeight - sum) / windowHeight * 0.25;
+        position = index * 0.25;
+        if (top + windowHeight > sum) {
+          position += (top + windowHeight - sum) / windowHeight * 0.25;
         }
         break;
       }
     }
-    document.documentElement.style.setProperty('--scroll-position', `${position*-1}s`);
+    $nav.style.setProperty('--scroll-position', `${position*-1}s`);
     $viewBox.style.top = `${(windowHeight-$viewBox.offsetHeight)*progress}px`;
   };
   const setupNav = () => {
-    setWindowHeight();
-    setSectionHeights();
-    setSumHeight();
-    setViewBoxHeight();
+    setState();
     resizeNavLinks();
     resizeViewBox();
     updateViewBox();
@@ -70,19 +61,14 @@
 
   ['load','resize','orientationchange'].forEach( e => {
     window.addEventListener(e, () => {
-      isSmallScreen = document.body.clientWidth < 768;
-      if (isSmallScreen) {
+      if (document.body.clientWidth < 768) {
         resetNavLinks();
       } else {
         setupNav();
       }
-      if (e === 'load') {
-        console.log('hiding');
-        document.querySelector('#overlay').classList.add('hide');
-      }
     });
   });
-  $wrapper.addEventListener('scroll', () => {
+  document.addEventListener('scroll', () => {
     if (!isSmallScreen) updateViewBox();
   });
 
@@ -100,7 +86,7 @@
         $span.style.setProperty('--content-width', `${$span.offsetWidth}px`);
         $span.style.width = '0';
         $span.style.height = '0';
-        $span.style.animation = '10s infinite grow-text';
+        $span.style.animation = '10s infinite masonry-grow-text';
       });
       $masonry.classList.add('active');
     });
@@ -131,11 +117,38 @@
     });
   });
 
+  /* DRAW CONTAINERS */
+  const options = {
+    threshold: 0.5
+  };
+  
+  const callback = (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('draw');
+      } else if (entry.target.getBoundingClientRect().top > 0) {
+        entry.target.classList.remove('draw');
+      }
+    });
+  };
+
+  const observer = new IntersectionObserver(callback, options);
+
+  $containers.forEach(($container) => {
+    $container.classList.remove('draw');
+    observer.observe($container);
+  });
+
   /* THEME TOGGLE */
   const $themeToggle = document.querySelector('.theme-toggle button');
 
   $themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('theme-dark');
+  });
+
+  /* LOADING SCREEN */
+  window.addEventListener('load', () => {
+    document.querySelector('#overlay').classList.add('hide');
   });
 
 })();
