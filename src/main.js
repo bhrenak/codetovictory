@@ -72,24 +72,49 @@
     if (!isSmallScreen) updateViewBox();
   });
 
-  /* MASONRY */
-  const $masonry = document.querySelector('.masonry');
-  const $codeSpans = $masonry.querySelectorAll('span:not(.keystone)');
+  /* SCENE */
+  const $scene = document.querySelector('.scene');
+  const $tiles = $scene.querySelectorAll('.tile');
+  const $back = document.querySelector('.stage .back');
 
-  ['load','resize','orientationchange'].forEach( e => {
-    window.addEventListener(e, () => {
-      $masonry.classList.remove('active');
-      $codeSpans.forEach(($span) => {
-        $span.style.animation = 'none';
-        $span.style.width = 'auto';
-        $span.style.height = 'auto';
-        $span.style.setProperty('--content-width', `${$span.offsetWidth}px`);
-        $span.style.width = '0';
-        $span.style.height = '0';
-        $span.style.animation = '10s infinite masonry-grow-text';
-      });
-      $masonry.classList.add('active');
+  const setCurrentTile = (index) => {
+    const $tile = $tiles[index];
+    const translate = `translateZ(${$tile.dataset.translate})`;
+    $scene.style.setProperty('transform',translate);
+
+    let $prevTile = $tile;
+    while($prevTile) {
+      $prevTile.classList.remove('fade-tile');
+      $prevTile = $prevTile.previousElementSibling;
+    }
+    let $nextTile = $tile.nextElementSibling;
+    while($nextTile) {
+      $nextTile.classList.add('fade-tile');
+      $nextTile = $nextTile.nextElementSibling;
+    }
+
+    $scene.querySelector('.current').classList.remove('current');
+    $tile.classList.add('current');
+
+    if (index >= $tiles.length - 1) {
+      $back.classList.add('hide');
+    } else {
+      $back.classList.remove('hide');
+    }
+  };
+
+  $tiles.forEach(($tile,index) => {
+    $tile.addEventListener('click', () => {
+      setCurrentTile(index);
     });
+  });
+
+  $back.addEventListener('click', () => {
+    const $current = $scene.querySelector('.current');
+    const index = [...$current.parentNode.children].indexOf($current);
+    if (index < $tiles.length) {
+      setCurrentTile(index);
+    }
   });
 
   /* COLLAPSIBLE CONTAINERS */
