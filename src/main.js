@@ -1,121 +1,135 @@
 (() => {
 
-  /* NAV */
-  const $nav = document.querySelector('nav');
-  const $navLinks = $nav.querySelectorAll('a');
-  const $viewBox = document.querySelector('nav > div');
-  const $body = document.documentElement || document.body;
-  const $sections = document.querySelectorAll('section');
+  class Nav {
+    constructor() {
+      this.$body = document.documentElement || document.body;
+      this.$nav = document.querySelector('nav');
+      this.$navLinks = this.$nav.querySelectorAll('a');
+      this.$viewBox = document.querySelector('nav > div');
+      this.$sections = document.querySelectorAll('section');
+      this.windowHeight = window.innerHeight;
+      this.sectionHeights = [];
+      this.sumHeight = 0;
+      this.viewBoxHeight = 0;
+      this.isSmallScreen = document.body.clientWidth < 768;
+    }
 
-  let windowHeight = window.innerHeight;
-  let sectionHeights = [];
-  let sumHeight = 0;
-  let viewBoxHeight = 0;
-  let isSmallScreen = document.body.clientWidth < 768;
+    measureState() {
+      this.windowHeight = window.innerHeight;
+      this.sectionHeights = [...this.$sections].map( $section => $section.offsetHeight );
+      this.sumHeight = this.sectionHeights.reduce((a,b) => a + b);
+      this.viewBoxHeight = `${this.windowHeight/this.sumHeight*100}vh`;
+      this.isSmallScreen = document.body.clientWidth < 768;
+    }
 
-  const setState = () => {
-    windowHeight = window.innerHeight;
-    sectionHeights = [...$sections].map( $section => $section.offsetHeight );
-    sumHeight = sectionHeights.reduce((a,b) => a + b);
-    viewBoxHeight = `${windowHeight/sumHeight*100}vh`;
-    isSmallScreen = document.body.clientWidth < 768;
-  };
-  const resizeNavLinks = () => {
-    sectionHeights.forEach( (height, index) => {
-      const h = `${height/sumHeight*100}vh`;
-      $navLinks[index].style.height = h;
-    });
-  };
-  const resetNavLinks = () => {
-    $navLinks.forEach(($link) => {
-      $link.style.height = 'auto';
-    }); 
-  };
-  const resizeViewBox = () => {
-    $viewBox.style.height = viewBoxHeight;
-  };
-  const updateViewBox = () => {
-    const top = $body.scrollTop;
-    const progress = top / (sumHeight-windowHeight);
-    let position = 0;
-    let sum = 0;
-    for (const [index, height] of sectionHeights.entries()) {
-      sum += height;
-      if (top < sum) {
-        position = index * 0.25;
-        if (top + windowHeight > sum) {
-          position += (top + windowHeight - sum) / windowHeight * 0.25;
+    resizeNavLinks() {
+      this.sectionHeights.forEach( (height, index) => {
+        const h = `${height/this.sumHeight*100}vh`;
+        this.$navLinks[index].style.height = h;
+      });
+    }
+    
+    resetNavLinks() {
+      this.$navLinks.forEach(($link) => {
+        $link.style.height = 'auto';
+      }); 
+    }
+    
+    resizeViewBox() {
+      this.$viewBox.style.height = this.viewBoxHeight;
+    }
+    
+    updateViewBox() {
+      const top = this.$body.scrollTop;
+      const progress = top / (this.sumHeight - this.windowHeight);
+      let position = 0;
+      let sum = 0;
+      for (const [index, height] of this.sectionHeights.entries()) {
+        sum += height;
+        if (top < sum) {
+          position = index * 0.25;
+          if (top + this.windowHeight > sum) {
+            position += (top + this.windowHeight - sum) / this.windowHeight * 0.25;
+          }
+          break;
         }
-        break;
       }
+      this.$body.style.setProperty('--scroll-position', `${position*-1}s`);
+      this.$viewBox.style.top = `${(this.windowHeight - this.$viewBox.offsetHeight) * progress}px`;
     }
-    $nav.style.setProperty('--scroll-position', `${position*-1}s`);
-    $viewBox.style.top = `${(windowHeight-$viewBox.offsetHeight)*progress}px`;
-  };
-  const setupNav = () => {
-    setState();
-    resizeNavLinks();
-    resizeViewBox();
-    updateViewBox();
-  };
 
-  ['load','resize','orientationchange'].forEach( e => {
-    window.addEventListener(e, () => {
-      if (document.body.clientWidth < 768) {
-        resetNavLinks();
+    setupNav() {
+      this.measureState();
+      this.resizeNavLinks();
+      this.resizeViewBox();
+      this.updateViewBox();
+    }
+
+    init() {
+      ['load','resize','orientationchange'].forEach( e => {
+        window.addEventListener(e, () => {
+          if (document.body.clientWidth < 768) {
+            this.resetNavLinks();
+          } else {
+            this.setupNav();
+          }
+        });
+      });
+      document.addEventListener('scroll', () => {
+        if (!this.isSmallScreen) this.updateViewBox();
+      });
+    }
+  }
+
+  class Scene {
+    constructor($stage) {
+      this.$scene = $stage.querySelector('.scene');
+      this.$tiles = $stage.querySelectorAll('.tile');
+      this.$back = $stage.querySelector('.back');
+    }
+
+    setCurrentTile(index) {
+      const $tile = this.$tiles[index];
+      const translate = `translateZ(${$tile.dataset.translate})`;
+      this.$scene.style.setProperty('transform',translate);
+  
+      let $prevTile = $tile;
+      while($prevTile) {
+        $prevTile.classList.remove('fade-tile');
+        $prevTile = $prevTile.previousElementSibling;
+      }
+      let $nextTile = $tile.nextElementSibling;
+      while($nextTile) {
+        $nextTile.classList.add('fade-tile');
+        $nextTile = $nextTile.nextElementSibling;
+      }
+  
+      this.$scene.querySelector('.current').classList.remove('current');
+      $tile.classList.add('current');
+  
+      if (index >= this.$tiles.length - 1) {
+        this.$back.classList.add('hide');
       } else {
-        setupNav();
+        this.$back.classList.remove('hide');
       }
-    });
-  });
-  document.addEventListener('scroll', () => {
-    if (!isSmallScreen) updateViewBox();
-  });
-
-  /* SCENE */
-  const $scene = document.querySelector('.scene');
-  const $tiles = $scene.querySelectorAll('.tile');
-  const $back = document.querySelector('.stage .back');
-
-  const setCurrentTile = (index) => {
-    const $tile = $tiles[index];
-    const translate = `translateZ(${$tile.dataset.translate})`;
-    $scene.style.setProperty('transform',translate);
-
-    let $prevTile = $tile;
-    while($prevTile) {
-      $prevTile.classList.remove('fade-tile');
-      $prevTile = $prevTile.previousElementSibling;
-    }
-    let $nextTile = $tile.nextElementSibling;
-    while($nextTile) {
-      $nextTile.classList.add('fade-tile');
-      $nextTile = $nextTile.nextElementSibling;
     }
 
-    $scene.querySelector('.current').classList.remove('current');
-    $tile.classList.add('current');
-
-    if (index >= $tiles.length - 1) {
-      $back.classList.add('hide');
-    } else {
-      $back.classList.remove('hide');
+    init() {
+      this.$tiles.forEach(($tile,index) => {
+        $tile.addEventListener('click', () => {
+          this.setCurrentTile(index);
+        });
+      });
+    
+      this.$back.addEventListener('click', () => {
+        const $current = this.$scene.querySelector('.current');
+        const index = [...$current.parentNode.children].indexOf($current);
+        if (index < this.$tiles.length) {
+          this.setCurrentTile(index);
+        }
+      });
     }
-  };
-
-  $tiles.forEach(($tile,index) => {
-    $tile.addEventListener('click', () => {
-      setCurrentTile(index);
-    });
-  });
-
-  $back.addEventListener('click', () => {
-    const $current = $scene.querySelector('.current');
-    const index = [...$current.parentNode.children].indexOf($current);
-    if (index < $tiles.length) {
-      setCurrentTile(index);
-    }
-  });
+  }
 
   /* COLLAPSIBLE CONTAINERS */
   const $sectionToggles = document.querySelectorAll('button.section-toggle');
@@ -137,17 +151,13 @@
   $contents.forEach(($content) => {
     $content.addEventListener('transitionend', (e) => {
       if (e.target === $content) {
-        if (!isSmallScreen) setupNav();
+        if (!nav.isSmallScreen) nav.setupNav();
       }
     });
   });
 
   /* DRAW CONTAINERS */
-  const options = {
-    threshold: 0.5
-  };
-  
-  const callback = (entries) => {
+  const draw = (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add('draw');
@@ -158,7 +168,7 @@
   };
 
   const $containers = document.querySelectorAll('.container');
-  const observer = new IntersectionObserver(callback, options);
+  const observer = new IntersectionObserver(draw, {threshold:0.5});
 
   $containers.forEach(($container) => {
     observer.observe($container);
@@ -175,5 +185,10 @@
   window.addEventListener('load', () => {
     document.querySelector('#overlay').classList.add('hide');
   });
+
+  const nav = new Nav();
+  nav.init();
+  const scene = new Scene(document.querySelector('.stage'));
+  scene.init();
 
 })();

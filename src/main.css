@@ -137,13 +137,20 @@ img {
   animation-delay: var(--scroll-position, 0);
   animation-timing-function: linear;
 }
+.active-font {
+  animation-duration: 1s;
+  animation-name: font-active-color;
+  animation-play-state: paused;
+  animation-delay: var(--scroll-position, 0);
+  animation-timing-function: linear;
+}
 .wrapper {
   max-width: 1440px;
   margin: auto;
   box-shadow: 1px 0 0 var(--theme-border);
 }
 h1 {
-  font-size: 1.5rem;
+  font-size: 1.425rem;
   font-weight: bold;
 }
 h2 {
@@ -179,19 +186,11 @@ ul {
   padding: 0 0 0 1.25rem;
 }
 ul ::marker {
-  color: var(--theme-bullet);
-}
-.bullet-blue ul ::marker {
-  color: var(--theme-color-blue);
-}
-.bullet-orange ul ::marker {
-  color: var(--theme-color-orange);
-}
-.bullet-red ul ::marker {
-  color: var(--theme-color-red);
-}
-.bullet-green ul ::marker {
-  color: var(--theme-color-green);
+  animation-duration: 1s;
+  animation-name: font-active-color;
+  animation-play-state: paused;
+  animation-delay: var(--scroll-position, 0);
+  animation-timing-function: linear;;
 }
 a {
   text-underline-offset: 0.15em;
@@ -339,6 +338,7 @@ main section {
 }
 .section-heading svg {
   height: 36px;
+  min-width: 30px;
   width: 30px;
   filter: drop-shadow(0.05rem 0.05rem 0 var(--theme-shadow));
 }
@@ -365,7 +365,11 @@ main section {
   bottom: 0;
   right: -1rem;
   left: 0;
-  background: var(--theme-border);
+  animation-duration: 1s;
+  animation-name: background-active-color;
+  animation-play-state: paused;
+  animation-delay: var(--scroll-position, 0);
+  animation-timing-function: linear;
   transform: rotateZ(-90deg) translate(-100%, -100%);
   transform-origin: top left;
   transition: transform 0.5s ease-out 0.5s;
@@ -455,7 +459,11 @@ input.container-toggle:checked ~ .container-content {
   bottom: 0;
   right: -3rem;
   left: -1.5rem;
-  background: var(--theme-border);
+  animation-duration: 1s;
+  animation-name: background-active-color;
+  animation-play-state: paused;
+  animation-delay: var(--scroll-position, 0);
+  animation-timing-function: linear;
   transform: rotateZ(-90deg) translate(-100%, -100%);
   transform-origin: top left;
   transition: transform 0.5s ease-out 0.5s;
@@ -548,7 +556,7 @@ input.container-toggle:checked ~ .container-content {
   position: relative;
   height: 365px;
   margin: 3rem 2rem;
-  transition: all 0.35s;
+  transition: all 0.35s ease-out;
 }
 .scene .tile {
   position: absolute;
@@ -558,6 +566,9 @@ input.container-toggle:checked ~ .container-content {
   height: 100%;
   box-shadow: 0 0 1rem var(--theme-shadow);
   border-radius: 1rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--theme-color-orange);
   background: var(--theme-bg-content);
   transition: box-shadow 0.15s;
 }
@@ -760,6 +771,11 @@ input.container-toggle:checked ~ .container-content {
     border-top: 1px var(--theme-border) solid;
     border-top-left-radius: 0.2rem;
     border-bottom-right-radius: 0;
+    animation-duration: 1s;
+    animation-name: border-active-color;
+    animation-play-state: paused;
+    animation-delay: var(--scroll-position, 0);
+    animation-timing-function: linear;
   }
   .theme-toggle button:hover {
     border-color: var(--theme-font-accent);
@@ -806,6 +822,36 @@ input.container-toggle:checked ~ .container-content {
   }
   75% {
     border-color: var(--theme-color-green);
+  }
+}
+
+@keyframes background-active-color {
+  0% {
+    background-color: var(--theme-color-orange);
+  }
+  25% {
+    background-color: var(--theme-color-blue);
+  }
+  50% {
+    background-color: var(--theme-color-red);
+  }
+  75% {
+    background-color: var(--theme-color-green);
+  }
+}
+
+@keyframes font-active-color {
+  0% {
+    color: var(--theme-color-orange);
+  }
+  25% {
+    color: var(--theme-color-blue);
+  }
+  50% {
+    color: var(--theme-color-red);
+  }
+  75% {
+    color: var(--theme-color-green);
   }
 }
 
