@@ -11,7 +11,7 @@
     <link rel="preload" href="/main.css" as="style" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/main.css">
     <style>
       #overlay {
@@ -79,10 +79,10 @@
       }
     </style>
   </head>
-  <body>
+  <body class="theme-dark">
     <div class="wrapper">
       <nav>
-        <div></div>
+        <div class="active-border"></div>
         <a href="#hello"><span>Hello</span></a>
         <a href="#skills"><span>Skills</span></a>
         <a href="#experience"><span>Experience</span></a>
@@ -96,7 +96,7 @@
           </button>
         </div>
         <section id="hello">
-          <div class="section-heading flex nowrap gap-half margin-top-1">
+          <div class="section-heading flex nowrap gap-half margin-top-half">
             <?xml version="1.0" encoding="iso-8859-1"?>
             <svg fill="currentColor" class="color-orange" height="48px" width="48px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
               viewBox="0 0 473.081 473.081" xml:space="preserve">
@@ -141,7 +141,7 @@
               <p class="inline-block">.</p>
             </div>
           </div>
-          <p class="margin-top-1-half">With over 15 years of experience in web development and CI/CD, I am currently serving in the role of Technical Manager for the Corporate Web Development Team at a leading internet infrastructure company.</p>
+          <p class="margin-top-1">With over 15 years of experience in web development and CI/CD, I am currently serving in the role of Technical Manager for the Corporate Web Development Team at a leading internet infrastructure company.</p>
           <p>I have a passion for building engaging user experiences and inspiring others to do the same through a mastery of technical fundamentals and process improvement.</p>
           <a class="button download" href="/static/Brian_Hrenak.pdf" target="_blank">View My Résumé</a>
           <div class="stage">
@@ -150,11 +150,14 @@
               <div class="tile" style="transform:translateZ(-2100px)" data-translate="182.5px">
                 <div class="grid flow-row">
                   <div class="background">
-                    <img src="/img/verisign.jpg" width="528" height="220" alt="Verisign building"/>
+                    <picture>
+                      <source srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" media="(max-width: 768px)">
+                      <img src="/img/verisign.jpg" width="528" height="220" alt="Verisign building"/>
+                    </picture>
                   </div>
                   <div class="content">
-                    <h3>2014-Present</h3>
-                    <p>Joining as a Front End Engineer, I eventually took on the role of Technical Manager for the Corporate Web Development Team at Verisign Inc in Reston, VA.</p>
+                    <h2>Developing Expertise</h2>
+                    <p>Joining as a Front End Engineer, after four years I was promoted to Technical Manager for the Corporate Web Development Team at Verisign Inc in Reston, VA.</p>
                   </div>
                 </div>
                 <div class="marker"></div>
@@ -162,10 +165,13 @@
               <div class="tile right" style="transform:translateZ(-1500px)" data-translate="176.5px">
                 <div class="grid flow-row">
                   <div class="background">
-                    <img src="/img/doe.jpg" width="528" height="220" alt="Department of Energy building"/>
+                    <picture>
+                      <source srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" media="(max-width: 768px)">
+                      <img src="/img/doe.jpg" width="528" height="220" alt="Department of Energy building"/>
+                    </picture>
                   </div>
                   <div class="content">
-                    <h3>2010-2014</h3>
+                    <h2>Starting a Career</h2>
                     <p>My first job out of school was developing database applications and visualizations as a contractor for the Department of Energy in Germantown, MD.</p>
                   </div>
                 </div>
@@ -174,11 +180,14 @@
               <div class="tile" style="transform:translateZ(-1000px)" data-translate="167px">
                 <div class="grid flow-row">
                   <div class="background">
-                    <img src="/img/mason.jpg" width="528" height="220" alt="George Mason University"/>
+                    <picture>
+                      <source srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" media="(max-width: 768px)">
+                      <img src="/img/mason.jpg" width="528" height="220" alt="George Mason University"/>
+                    </picture>
                   </div>
                   <div class="content">
-                    <h3>2005-2009</h3>
-                    <p>I transferred during sophomore year to George Mason University in Fairfax, VA to complete my degree in Information Systems and Operations Management.</p>
+                    <h2>Earning My Degree</h2>
+                    <p>I transferred during sophomore year to George Mason University in Fairfax, VA to complete my degree in Information Systems and Operations Management while working part time in an auto parts store.</p>
                   </div>
                 </div>
                 <div class="marker"></div>
@@ -186,11 +195,14 @@
               <div class="tile right" style="transform:translateZ(-600px)" data-translate="150px">
                 <div class="grid flow-row">
                   <div class="background">
-                    <img src="/img/hilton_head.jpg" width="528" height="220" alt="Hilton Head, SC"/>
+                    <picture>
+                      <source srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" media="(max-width: 768px)">
+                      <img src="/img/hilton_head.jpg" width="528" height="220" alt="Hilton Head, SC"/>
+                    </picture>
                   </div>
                   <div class="content">
-                    <h3>2000-2004</h3>
-                    <p>For the last two years of high school I lived in Hilton Head, SC, receiving a Life scholarship to attend the University of South Carolina in Columbia.</p>
+                    <h2>Formational Time</h2>
+                    <p>For the last two years of high school I lived in Hilton Head, SC, achieving the rank of Eagle Scout before earning a Life scholarship to attend the University of South Carolina in Columbia.</p>
                   </div>
                 </div>
                 <div class="marker"></div>
@@ -198,11 +210,14 @@
               <div class="tile" style="transform:translateZ(-300px)" data-translate="120px">
                 <div class="grid flow-row">
                   <div class="background">
-                    <img src="/img/arlington.jpg" width="528" height="220" alt="Arlington, Va"/>
+                    <picture>
+                      <source srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" media="(max-width: 768px)">
+                      <img src="/img/arlington.jpg" width="528" height="220" alt="Arlington, VA"/>
+                    </picture>
                   </div>
                   <div class="content">
-                    <h3>1985-1999</h3>
-                    <p>From kindergarten through the beginning of high school my family lived in Arlington, VA, where I formed many lifelong connections.</p>
+                    <h2>Growing Up</h2>
+                    <p>From kindergarten through the beginning of high school my family lived in Arlington, VA, where I was active in the Boy Scouts and multiple sports, forming many lifelong connections.</p>
                   </div>
                 </div>
                 <div class="marker"></div>
@@ -210,11 +225,14 @@
               <div class="tile right" style="transform:translateZ(-100px)" data-translate="66px">
                 <div class="grid flow-row">
                   <div class="background">
-                    <img src="/img/g_city.jpg" width="528" height="220" alt="Garden City, NY"/>
+                    <picture>
+                      <source srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" media="(max-width: 768px)">
+                      <img src="/img/g_city.jpg" width="528" height="220" alt="Garden City, NY"/>
+                    </picture>
                   </div>
                   <div class="content">
-                    <h3>1985-1988</h3>
-                    <p>My earliest memories take place in Garden City, NY, living on Mitchel Air Force Base where my father served as a Colonel.</p>
+                    <h2>Early Years</h2>
+                    <p>My first memories take place in Garden City, NY, living on Mitchel Air Force Base where my father was stationed and my mother worked remotely as a Project Manager for Computer Sciences Corporation.</p>
                   </div>
                 </div>
                 <div class="marker"></div>
@@ -222,10 +240,13 @@
               <div class="tile current" data-translate="0px">
                 <div class="grid flow-row">
                   <div class="background">
-                    <img src="/img/bethesda.jpg" width="528" height="220" alt="Bethesda, MD"/>
+                    <picture>
+                      <source srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" media="(max-width: 768px)">
+                      <img src="/img/bethesda.jpg" width="528" height="220" alt="Bethesda, MD"/>
+                    </picture>
                   </div>
                   <div class="content">
-                    <h3>1983</h3>
+                    <h2>Hello, World!</h2>
                     <p>Born at Bethesda Naval Hospital in the early 1980s, I was granted a perspective which links the beginning of the internet age with my own growth and development.</p>
                   </div>
                 </div>
@@ -241,7 +262,7 @@
             <h2>Skills</h2>
             <button class="section-toggle">+/- All</button>
           </div>
-          <div class="container draw margin-top-1">
+          <div class="container margin-top-1">
             <input type="checkbox" class="container-toggle" id="skill_1" name="skill_1">
             <label for="skill_1"><h3 class="container-heading"><span>Browser</span></h3><span class="container-indicator"></span></label>
             <div class="container-content">
@@ -252,7 +273,7 @@
                     <li>Object oriented and functional patterns</li>
                     <li>Inheritance and closure</li>
                     <li>Asynchronous programming and events</li>
-                    <li>ECMAScript</li>
+                    <li>Model-View-Controller designs</li>
                     <li>AJAX, REST, API</li>
                 </div>
                 <div>
@@ -261,7 +282,7 @@
                     <li>Semantic elements</li>
                     <li>Custom elements and web components</li>
                     <li>Accessibility Standards</li>
-                    <li>Reflow, repaint, and rasterization</li>
+                    <li>Reflow, repaint, and compositing</li>
                     <li>SEO and Social optimization</li>
                 </div>
                 <div>
@@ -276,9 +297,10 @@
                 <div>
                   <h4>HTTP</h4>
                   <ul>
-                    <li>POST, GET, PUT, PATCH, DELETE</li>
-                    <li>Headers, CORS, CSP</li>
-                    <li>HTTP/2</li>
+                    <li>Headers, CORS, Content Security Policy</li>
+                    <li>WebSockets</li>
+                    <li>Server modules</li>
+                    <li>Caching, proxies</li>
                     <li>SSL and cert negotiation</li>
                 </div>
                 <div>
@@ -302,7 +324,7 @@
             </div>
           </div>
           <div class="grid gap-1 equal-col margin-top-1">
-            <div class="container draw">
+            <div class="container">
               <input type="checkbox" class="container-toggle" id="skill_2" name="skill_2">
               <label for="skill_2"><h3 class="container-heading"><span>Tooling</span></h3><span class="container-indicator"></span></label>
               <div class="container-content">
@@ -316,7 +338,7 @@
                 </div>
               </div>
             </div>
-            <div class="container draw">
+            <div class="container">
               <input type="checkbox" class="container-toggle" id="skill_3" name="skill_3">
               <label for="skill_3"><h3 class="container-heading"><span>Frameworks</span></h3><span class="container-indicator"></span></label>
               <div class="container-content">
@@ -330,7 +352,7 @@
                 </div>
               </div>
             </div>
-            <div class="container draw">
+            <div class="container">
               <input type="checkbox" class="container-toggle" id="skill_4" name="skill_4">
               <label for="skill_4"><h3 class="container-heading"><span>Database</span></span></h3><span class="container-indicator"></span></label>
               <div class="container-content">
@@ -344,7 +366,7 @@
                 </div>
               </div>
             </div>
-            <div class="container draw">
+            <div class="container">
               <input type="checkbox" class="container-toggle" id="skill_5" name="skill_5">
               <label for="skill_5"><h3 class="container-heading"><span>CI/CD</span></h3><span class="container-indicator"></span></label>
               <div class="container-content">
@@ -357,7 +379,7 @@
                 </div>
               </div>
             </div>
-            <div class="container draw">
+            <div class="container">
               <input type="checkbox" class="container-toggle" id="skill_6" name="skill_6">
               <label for="skill_6"><h3 class="container-heading"><span>Process</span></h3><span class="container-indicator"></span></label>
               <div class="container-content">
@@ -393,7 +415,7 @@
             <h2>Experience</h2>
             <button class="section-toggle" data-collapsed="true">+/- All</button>
           </div>
-          <div class="container draw margin-top-1">
+          <div class="container margin-top-1">
             <input type="checkbox" class="container-toggle" id="exp_1" name="exp_1">
             <label for="exp_1"><h3 class="container-heading"><span>Technical Manager, Product Engineering</span></h3><span class="container-indicator"></span></label>
             <div class="container-content">
@@ -412,7 +434,7 @@
               </div>
             </div>
           </div>
-          <div class="container draw margin-top-1">
+          <div class="container margin-top-1">
             <input type="checkbox" class="container-toggle" id="exp_2" name="exp_2" checked>
             <label for="exp_2"><h3 class="container-heading"><span>Web Developer Level IV</span></h3><span class="container-indicator"></span></label>
             <div class="container-content">
@@ -430,7 +452,7 @@
               </div>
             </div>
           </div>
-          <div class="container draw margin-top-1">
+          <div class="container margin-top-1">
             <input type="checkbox" class="container-toggle" id="exp_3" name="exp_3" checked>
             <label for="exp_3"><h3 class="container-heading"><span>Database Application Developer</span></h3><span class="container-indicator"></span></label>
             <div class="container-content">
@@ -449,7 +471,7 @@
               </div>
             </div>
           </div>
-          <div class="container draw margin-top-1">
+          <div class="container margin-top-1">
             <input type="checkbox" class="container-toggle" id="exp_4" name="exp_4" checked>
             <label for="exp_4"><h3 class="container-heading"><span>Federal Internship</span></h3><span class="container-indicator"></span></label>
             <div class="container-content">
@@ -466,7 +488,7 @@
               </div>
             </div>
           </div>
-          <div class="container draw margin-top-1">
+          <div class="container margin-top-1">
             <input type="checkbox" class="container-toggle" id="exp_5" name="exp_5" checked>
             <label for="exp_5"><h3 class="container-heading"><span>Assistant Store Manager</span></h3><span class="container-indicator"></span></label>
             <div class="container-content">
@@ -535,7 +557,7 @@
             <button class="section-toggle">+/- All</button>
           </div>
           <div class="grid gap-1 margin-top-1">
-            <div class="container draw">
+            <div class="container">
               <input type="checkbox" class="container-toggle" id="bg_1" name="bg_1">
               <label for="bg_1"><h3 class="container-heading"><span>Education</span></h3><span class="container-indicator"></span></label>
               <div class="container-content">
@@ -547,7 +569,7 @@
                 </div>
               </div>
             </div>
-            <div class="container draw">
+            <div class="container">
               <input type="checkbox" class="container-toggle" id="bg_2" name="bg_2">
               <label for="bg_2"><h3 class="container-heading"><span>Interests/Hobbies</span></h3><span class="container-indicator"></span></label>
               <div class="container-content">
@@ -559,7 +581,7 @@
                 </div>
               </div>
             </div>
-            <div class="container draw">
+            <div class="container">
               <input type="checkbox" class="container-toggle" id="bg_3" name="bg_3">
               <label for="bg_3"><h3 class="container-heading"><span>Contact</span></h3><span class="container-indicator"></span></label>
               <div class="container-content">
@@ -570,7 +592,7 @@
               </div>
             </div>
           </div>
-          <div class="container draw margin-top-1">
+          <div class="container margin-top-1">
             <input type="checkbox" class="container-toggle" id="bg_4" name="bg_4">
             <label for="bg_4"><h3 class="container-heading"><span>About</span></h3><span class="container-indicator"></span></label>
             <div class="container-content">

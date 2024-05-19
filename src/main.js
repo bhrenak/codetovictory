@@ -132,11 +132,11 @@
     });
   });
 
-  const $containers = document.querySelectorAll('.container');
+  const $contents = document.querySelectorAll('.container-content');
 
-  $containers.forEach(($container) => {
-    $container.addEventListener('transitionend', (e) => {
-      if (e.target === $container) {
+  $contents.forEach(($content) => {
+    $content.addEventListener('transitionend', (e) => {
+      if (e.target === $content) {
         if (!isSmallScreen) setupNav();
       }
     });
@@ -157,10 +157,10 @@
     });
   };
 
+  const $containers = document.querySelectorAll('.container');
   const observer = new IntersectionObserver(callback, options);
 
   $containers.forEach(($container) => {
-    $container.classList.remove('draw');
     observer.observe($container);
   });
 
