@@ -1,0 +1,163 @@
+.stage {
+  display: none;
+  perspective: 200px;
+  margin: -3rem -2rem;
+  overflow: hidden;
+}
+.stage .back {
+  position: absolute;
+  bottom: 2px;
+  left: 45%;
+  width: 10%;
+  height: 1.25rem;
+  cursor: pointer;
+}
+.stage .back::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1rem;
+  height: 1rem;
+  animation: hop 2s infinite;
+  border-right: 4px var(--theme-color-orange) solid;
+  border-bottom: 4px var(--theme-color-orange) solid;
+  transform: translate(-50%,-50%) rotateZ(45deg);
+}
+.scene {
+  perspective: 200px;
+  position: relative;
+  height: 365px;
+  margin: 3rem 2rem;
+  transition: all 0.35s ease-out;
+}
+.scene .tile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45%;
+  height: 100%;
+  box-shadow: 0 0 1rem var(--theme-shadow);
+  border-radius: 1rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--theme-color-orange);
+  background: var(--theme-bg-content);
+  transition: box-shadow 0.15s;
+}
+.scene .tile.right {
+  left: 55%;
+}
+.scene .tile::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: calc(100% - 0.75rem);
+  width: 13%;
+  border-bottom: 1px var(--theme-color-orange) dashed;
+}
+.scene .tile.right::after {
+  right: calc(100% - 0.75rem);
+  left: auto;
+}
+.scene .marker {
+  position: absolute;
+  left: 100%;
+  bottom: 0;
+  width: 22.25%;
+  height: 3rem;
+  transform: translateY(50%);
+}
+.scene .tile.right .marker {
+  right: 100%;
+  left: auto;
+}
+.scene .marker::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 1.5rem;
+  width: 3rem;
+  transform: translate(-50%,-50%);
+  border: 3px var(--theme-color-orange-alpha-15) solid;
+  border-radius: 50%;
+}
+.scene .tile:not(.current):hover .marker::before {
+  border: 3px var(--theme-color-orange) solid;
+}
+.scene .marker::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 0.75rem;
+  width: 1.5rem;
+  transform: translate(-50%,-50%);
+  background: var(--theme-color-orange);
+  border-radius: 50%;
+}
+.scene .tile:not(.current) {
+  cursor: pointer;
+}
+.scene .tile:not(.current):hover {
+  box-shadow: 0 0 1rem var(--theme-shadow-accent);
+}
+.scene .tile.fade-tile {
+  animation-name: fade-tile;
+  animation-duration: 0.35s;
+  animation-fill-mode: forwards;
+}
+.scene .timeline {
+  position: absolute;
+  bottom: 0;
+  left: 49.5%;
+  width: 1%;
+  height: 2100px;
+  background: var(--theme-color-orange-alpha-15);
+  transform-origin: center bottom;
+  transform: rotateX(90deg);
+}
+.scene .grid {
+  border-radius: 1rem;
+  overflow: hidden;
+  height: 100%;
+  grid-template-rows: minmax(0, 60%) minmax(40%, auto);
+}
+.scene .background {
+  position: relative;
+}
+.scene picture {
+  height: 100%;
+}
+.scene .background img {
+  height: 100%;
+}
+.scene .background:after {
+  content: '';
+  position: absolute;
+  top: 90%;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  background: linear-gradient(0deg, var(--theme-bg-content) 0%, rgba(255,255,255,0) 100%);
+}
+.scene .content {
+  padding: 0.75rem 1rem 1rem;
+}
+.scene .content p {
+  margin-top: 0;
+}
+.scene h2 {
+  font-style: italic;
+  font-size: 1.17rem;
+  color: var(--theme-font-accent);
+  font-weight: normal;
+  margin-bottom: 0.45rem;
+}
+
+@media(min-width:768px) {
+  .stage {
+    display: block;
+  }
+}

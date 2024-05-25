@@ -1,0 +1,216 @@
+body {
+  margin: 0;
+  background: var(--theme-bg-accent);
+}
+img {
+  max-width: 100%;
+  object-fit: cover;
+}
+.wrapper {
+  max-width: 1440px;
+  margin: auto;
+  box-shadow: 1px 0 0 var(--theme-border);
+}
+button, a.button {
+  border: 1px var(--theme-border) solid;
+  border-radius: 0.2rem;
+  font-size: 0.825rem;
+  color: var(--theme-font-accent);
+  text-decoration: none;
+  background: var(--theme-bg-accent);
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  transition: all var(--transition-timing);
+}
+button:hover,
+a.button:hover {
+  background: var(--theme-font-accent);
+  color: var(--theme-bg-accent);
+  border-color: var(--theme-font-accent);
+  box-shadow: 0 0.15rem 0.5rem var(--theme-border);
+  transform: scale(1.05);
+}
+button:active,
+a.button:active,
+button:focus,
+a.button:focus {
+  outline: none;
+}
+a.button.download {
+  margin: 1.5rem 0 0.75rem;
+  padding: 0.15rem 0.75rem 0.15rem 0.5rem;
+  display: inline-block;
+  text-shadow: none;
+}
+a.button.download::before {
+  content: "\2750";
+  display: inline-block;
+  margin-right: 0.25rem;
+}
+label {
+  cursor: pointer;
+  position: relative;
+}
+main {
+  background: var(--theme-bg-content);
+  padding-top: 36px;
+  position: relative;
+  height: 100%;
+  flex-grow: 1;
+  transition: background-color var(--transition-timing), color var(--transition-timing);
+}
+main section {
+  padding: 1rem;
+  border-bottom: 1px var(--theme-border) solid;
+}
+section.section-orange {
+  --section-color: var(--theme-color-orange);
+}
+section.section-blue {
+  --section-color: var(--theme-color-blue);
+}
+section.section-red {
+  --section-color: var(--theme-color-red);
+}
+section.section-green {
+  --section-color: var(--theme-color-green);
+}
+.section-heading svg {
+  height: 36px;
+  min-width: 30px;
+  width: 30px;
+  color: var(--section-color);
+  filter: drop-shadow(0.05rem 0.05rem 0 var(--theme-shadow));
+}
+.section-heading button {
+  margin: 0 0 0.1rem 0.25rem;
+}
+.section-heading button {
+  align-self: flex-end;
+}
+.theme-toggle {
+  position: sticky;
+  top: 2.25rem;
+  left: 100%;
+  z-index: 9;
+}
+.theme-toggle button {
+  padding: 0.25rem 0.4rem 0.1rem;
+  font-size: 1.15rem;
+  line-height: 1em;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  transform-origin: center right;
+}
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+.headshot {
+  text-align: center;
+}
+.headshot img {
+  width: 100%;
+  max-width: 294px;
+  max-height: 294px;
+  border-radius: 50%;
+  border: 1rem #fff solid;
+  box-shadow: 0 0 0.5rem var(--theme-shadow);
+}
+
+@media(min-width:768px) {
+  .wrapper {
+    display: flex;
+  }
+  main {
+    width: calc(100% - 200px);
+    padding-top: 0;
+  }
+  main section {
+    padding: 2rem;
+  }
+  #hello {
+    padding-bottom: 3rem;
+  }
+  .section-heading svg {
+    height: 48px;
+    width: 42px;
+  }
+  .section-heading h2 {
+    flex-grow: unset;
+  }
+  .section-heading button {
+    margin: 0 0 0.25rem 0.875rem;
+  }
+  .theme-toggle {
+    top: 1rem;
+  }
+  .theme-toggle button {
+    max-width: 1.5rem;
+    padding: 0.25rem 0 0;
+    border-right: none;
+    border-top: 1px var(--theme-border) solid;
+    border-top-left-radius: 0.2rem;
+    border-bottom-right-radius: 0;
+  }
+  .theme-toggle button:hover {
+    border-color: var(--theme-font-accent);
+  }
+  a.button.download {
+    margin: 1.5rem 0 2rem;
+  }
+  .headshot {
+    margin: 0 1rem;
+  }
+}
+
+@keyframes border-active-color {
+  0% {
+    border-color: var(--theme-color-orange);
+  }
+  25% {
+    border-color: var(--theme-color-blue);
+  }
+  50% {
+    border-color: var(--theme-color-red);
+  }
+  75% {
+    border-color: var(--theme-color-green);
+  }
+}
+
+@keyframes fade-tile {
+  0% {
+    opacity: 1;
+  }
+  99% {
+    opacity: 0;
+  }
+  100% {
+    display: none;
+    opacity: 0;
+  }
+}
+
+@keyframes hop {
+	0% {
+    transform: translate(-50%,calc(-50% - 0.35rem)) rotateZ(45deg);
+	}
+	25% {
+    transform: translate(-50%,-50%) rotateZ(45deg);
+	}
+	50% {
+    transform: translate(-50%,calc(-50% - 0.35rem)) rotateZ(45deg);
+	}
+	75% {
+	  transform: translate(-50%,-50%) rotateZ(45deg);
+	}
+	100% {
+    transform: translate(-50%,calc(-50% - 0.35rem)) rotateZ(45deg);
+	}
+}

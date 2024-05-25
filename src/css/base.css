@@ -1,0 +1,17 @@
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  scroll-padding-top: 1.5rem;
+}
+*, *::before, *::after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+@media(min-width:768px) {
+  html {
+    scroll-padding-top: 0;
+  }
+}

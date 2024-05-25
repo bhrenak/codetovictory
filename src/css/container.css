@@ -1,0 +1,147 @@
+.container {
+  position: relative;
+}
+.container-heading {
+  position: relative;
+  overflow: hidden;
+  padding: var(--border-width);
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+.container-heading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -1rem;
+  left: 0;
+  background-color: var(--section-color);
+  transform: rotateZ(-90deg) translate(-100%, calc(-100% - 1px));
+  transform-origin: top left;
+  transition: transform 0.5s ease-out 0.5s;
+}
+.container-heading::after {
+  content: '';
+  position: absolute;
+  top: var(--border-width);
+  right: var(--border-width);
+  bottom: var(--border-width);
+  left: var(--border-width);
+  background: var(--theme-bg-content);
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+.container-heading span {
+  background: var(--theme-bg-accent);
+  position: relative;
+  display: block;
+  padding: 0.25rem 1.5rem 0.15rem;
+  z-index: 1;
+  opacity: 0;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  transition: opacity 1s ease-in;
+}
+.container-indicator {
+  width: 0.875rem;
+  height: 0.875rem;
+  margin: 0;
+  z-index: 1;
+  opacity: 0;
+  display: block;
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  left: 0.4rem;
+  cursor: pointer;
+  transition: opacity 1s ease-in;
+  border-radius: 0.15rem;
+  border: 1px solid var(--section-color);
+}
+.container-indicator::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--theme-font-accent);
+  border-left: 0.1rem var(--theme-bg-content) solid;
+  border-right: 0.1rem var(--theme-bg-content) solid;
+  border-top: 0.34rem var(--theme-bg-content) solid;
+  border-bottom: 0.34rem var(--theme-bg-content) solid;
+  border-radius: 0.15rem;
+}
+input.container-toggle {
+  display: none;
+}
+input.container-toggle:checked ~ label .container-indicator::after {
+  content: '';
+  position: absolute;
+  top: 0.1rem;
+  left: 0.325rem;
+  right: 0.325rem;
+  bottom: 0.1rem;
+  background: var(--theme-font-accent);
+}
+input.container-toggle:checked ~ .container-content {
+  max-height: 0px;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+}
+.container-content {
+  position: relative;
+  max-height: 1000px;
+  overflow: hidden;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  margin-top: -0.05rem;
+  transition: all 0.35s, color var(--transition-timing);
+}
+.container-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -3rem;
+  left: -1.5rem;
+  background-color: var(--section-color);
+  transform: rotateZ(-90deg) translate(-100%, calc(-100% - 1px));
+  transform-origin: top left;
+  transition: transform 0.5s ease-out 0.5s;
+}
+.container-content::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 200%;
+  transform: translateY(-50%);
+  transition: transform 1s ease-in;
+  background: linear-gradient(0deg, var(--theme-bg-content) 0%, var(--theme-bg-content) 50%, rgba(0,0,0,0) 100%);
+}
+.container-content > div {
+  position: relative;
+  height: calc(100% - 0.1rem);
+  background: var(--theme-bg-content);
+  margin: var(--border-width);
+  padding-bottom: 1.5rem;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+.container.draw .container-heading::before,
+.container.draw .container-content::before {
+  transform: rotateZ(0deg) translate(0%, -0%);
+  transition: transform 0.5s ease-out;
+}
+.container.draw .container-content::after {
+  transform: translateY(50%);
+  transition: transform 1s ease-in 0.5s;
+}
+.container.draw .container-indicator,
+.container.draw .container-heading span {
+  opacity: 1;
+  transition: opacity 1s ease-in 0.5s;
+}
