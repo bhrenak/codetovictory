@@ -5,6 +5,7 @@ class Nav {
     this.$navLinks = this.$nav.querySelectorAll('a');
     this.$viewBox = document.querySelector('nav > div');
     this.$sections = document.querySelectorAll('section');
+    this.measureState();
   }
 
   measureState() {

@@ -10,8 +10,8 @@
     "minify-css": "minify ./build/main.css > ./dist/main.css",
     "build-css": "npm run concat-css && npm run minify-css",
     "concat-js": "concat -o ./build/main.js ./src/js/nav.js ./src/js/timeline.js ./src/js/container.js ./src/js/main.js",
-    "minify-js": "minify ./build/main.js > ./dist/main.min.js",
-    "build-js": "npm run concat-js && npm run minify-js",
+    "uglify-js": "uglifyjs ./build/main.js -o ./dist/main.min.js -c -m",
+    "build-js": "npm run concat-js && npm run uglify-js",
     "build-html": "minify ./src/index.html > ./dist/index.html",
     "build-images": "copyfiles -u 1 ./src/img/* ./dist",
     "build-static": "copyfiles -u 1 ./src/static/* ./dist",
@@ -19,9 +19,10 @@
     "build": "npm run clean && npm run build-css && npm run build-js && npm run build-html && npm run build-images && npm run build-static && npm run serve"
   },
   "dependencies": {
-    "copyfiles": "^2.4.1",
     "concat": "^1.0.3",
+    "copyfiles": "^2.4.1",
+    "local-web-server": "^5.3.0",
     "minify": "^11.0.1",
-    "local-web-server": "^5.3.0"
+    "uglify-js": "^3.17.4"
   }
 }

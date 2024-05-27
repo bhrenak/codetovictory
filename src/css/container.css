@@ -35,7 +35,7 @@
   background: var(--theme-bg-accent);
   position: relative;
   display: block;
-  padding: 0.25rem 1.5rem 0.15rem;
+  padding: 0.25rem 1rem 0.15rem 1.55rem;
   z-index: 1;
   opacity: 0;
   border-top-left-radius: 0.5rem;

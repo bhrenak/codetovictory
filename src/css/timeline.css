@@ -1,7 +1,7 @@
 .stage {
   display: none;
   perspective: 200px;
-  margin: -3rem -2rem;
+  margin: -1rem -2rem -3rem;
   overflow: hidden;
 }
 .stage .back {
@@ -43,7 +43,7 @@
   border-style: solid;
   border-color: var(--theme-color-orange);
   background: var(--theme-bg-content);
-  transition: box-shadow 0.15s;
+  transition: box-shadow 0.35s;
 }
 .scene .tile.right {
   left: 55%;
@@ -82,6 +82,7 @@
   transform: translate(-50%,-50%);
   border: 3px var(--theme-color-orange-alpha-15) solid;
   border-radius: 50%;
+  transition: border 0.35s;
 }
 .scene .tile:not(.current):hover .marker::before {
   border: 3px var(--theme-color-orange) solid;
@@ -101,7 +102,7 @@
   cursor: pointer;
 }
 .scene .tile:not(.current):hover {
-  box-shadow: 0 0 1rem var(--theme-shadow-accent);
+  box-shadow: 0 0 1rem var(--theme-color-orange);
 }
 .scene .tile.fade-tile {
   animation-name: fade-tile;
