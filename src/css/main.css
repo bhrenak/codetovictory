@@ -21,23 +21,21 @@ button, a.button {
   padding: 0.3rem 0.5rem;
   cursor: pointer;
   transition: all var(--transition-timing);
-}
-button:active,
-a.button:active,
-button:focus,
-a.button:focus {
-  outline: none;
-}
-a.button.download {
-  margin: 1.5rem 0 0.75rem;
-  padding: 0.15rem 0.75rem 0.15rem 0.5rem;
-  display: inline-block;
-  text-shadow: none;
-}
-a.button.download::before {
-  content: "\2750";
-  display: inline-block;
-  margin-right: 0.25rem;
+  &:active, &:focus {
+    outline: none;
+  }
+  &.download {
+    margin: 1.5rem 0 0.75rem;
+    padding: 0.15rem 0.75rem 0.15rem 0.5rem;
+    display: inline-block;
+    text-shadow: none;
+    &::before {
+      content: "\2750";
+      display: inline-block;
+      margin-right: 0.25rem;
+
+    }
+  }
 }
 label {
   cursor: pointer;
@@ -51,68 +49,68 @@ main {
   flex-grow: 1;
   transition: background-color var(--transition-timing), color var(--transition-timing);
 }
-main section {
+section {
   padding: 1rem;
   border-bottom: 1px var(--theme-border) solid;
+  &.section-orange {
+    --section-color: var(--theme-color-orange);
+  }
+  &.section-blue {
+    --section-color: var(--theme-color-blue);
+  }
+  &.section-red {
+    --section-color: var(--theme-color-red);
+  }
+  &.section-green {
+    --section-color: var(--theme-color-green);
+  }
 }
-section.section-orange {
-  --section-color: var(--theme-color-orange);
-}
-section.section-blue {
-  --section-color: var(--theme-color-blue);
-}
-section.section-red {
-  --section-color: var(--theme-color-red);
-}
-section.section-green {
-  --section-color: var(--theme-color-green);
-}
-.section-heading svg {
-  height: 36px;
-  min-width: 30px;
-  width: 30px;
-  color: var(--section-color);
-  filter: drop-shadow(0.05rem 0.05rem 0 var(--theme-shadow));
-}
-.section-heading button {
-  margin: 0 0 0.1rem 0.25rem;
-}
-.section-heading button {
-  align-self: flex-end;
+.section-heading {
+  svg {
+    height: 36px;
+    min-width: 30px;
+    width: 30px;
+    color: var(--section-color);
+    filter: drop-shadow(0.05rem 0.05rem 0 var(--theme-shadow));
+  }
+  button {
+    margin: 0 0 0.1rem 0.25rem;
+    align-self: flex-end;
+  }
 }
 .theme-toggle {
   position: sticky;
   top: 2.25rem;
   left: 100%;
   z-index: 9;
-}
-.theme-toggle button {
-  padding: 0.25rem 0.4rem 0.1rem;
-  font-size: 1.15rem;
-  line-height: 1em;
-  margin: 0;
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-top: none;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  transform-origin: center right;
-}
-.theme-toggle svg {
-  width: 20px;
-  height: 20px;
+  button {
+    padding: 0.25rem 0.4rem 0.1rem;
+    font-size: 1.15rem;
+    line-height: 1em;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-top: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    transform-origin: center right;
+  }
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 .headshot {
   text-align: center;
-}
-.headshot img {
-  width: 100%;
-  max-width: 294px;
-  max-height: 294px;
-  border-radius: 50%;
-  border: 1rem #fff solid;
-  box-shadow: 0 0 0.5rem var(--theme-shadow);
+  img {
+    width: 100%;
+    max-width: 294px;
+    max-height: 294px;
+    border-radius: 50%;
+    border: 1rem #fff solid;
+    box-shadow: 0 0 0.5rem var(--theme-shadow);
+  }
 }
 
 @media(hover: hover) and (pointer: fine) {
@@ -133,36 +131,38 @@ section.section-green {
   main {
     width: calc(100% - 200px);
     padding-top: 0;
-  }
-  main section {
-    padding: 2rem;
+    section {
+      padding: 2rem;
+    }
   }
   #hello {
     padding-bottom: 3rem;
   }
-  .section-heading svg {
-    height: 48px;
-    width: 42px;
-  }
-  .section-heading h2 {
-    flex-grow: unset;
-  }
-  .section-heading button {
-    margin: 0 0 0.25rem 0.875rem;
+  .section-heading {
+    svg {
+      height: 48px;
+      width: 42px;
+    }
+    h2 {
+      flex-grow: unset;
+    }
+    button {
+      margin: 0 0 0.25rem 0.875rem;
+    }
   }
   .theme-toggle {
     top: 1rem;
-  }
-  .theme-toggle button {
-    max-width: 1.5rem;
-    padding: 0.25rem 0 0;
-    border-right: none;
-    border-top: 1px var(--theme-border) solid;
-    border-top-left-radius: 0.2rem;
-    border-bottom-right-radius: 0;
-  }
-  .theme-toggle button:hover {
-    border-color: var(--theme-font-accent);
+      button {
+      max-width: 1.5rem;
+      padding: 0.25rem 0 0;
+      border-right: none;
+      border-top: 1px var(--theme-border) solid;
+      border-top-left-radius: 0.2rem;
+      border-bottom-right-radius: 0;
+    }
+    button:hover {
+      border-color: var(--theme-font-accent);
+    }
   }
   a.button.download {
     margin: 1.5rem 0 0;
