@@ -72,5 +72,11 @@ class Nav {
     document.addEventListener('scroll', () => {
       if (!this.isSmallScreen) this.updateViewBox();
     });
+    const observer = new ResizeObserver( () => { 
+      if (document.body.clientWidth >= 768) {
+        this.setupNav();
+      }
+    });
+    observer.observe(document.body);
   }
 }

@@ -6,10 +6,10 @@
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf ./build && mkdir build && rm -rf ./dist && mkdir dist",
-    "concat-css": "concat -o ./build/main.css ./src/css/variables.css ./src/css/base.css ./src/css/utility.css ./src/css/typography.css ./src/css/nav.css ./src/css/container.css ./src/css/timeline.css ./src/css/main.css",
+    "concat-css": "concat -o ./build/main.css ./src/css/variables.css ./src/css/base.css ./src/css/utility.css ./src/css/typography.css ./src/css/nav.css ./src/css/container.css ./src/css/gallery.css ./src/css/main.css ./src/css/keyframes.css",
     "minify-css": "lightningcss --minify --bundle --targets '>= 0.25%' ./build/main.css -o ./dist/main.css",
     "build-css": "npm run concat-css && npm run minify-css",
-    "concat-js": "concat -o ./build/main.js ./src/js/nav.js ./src/js/timeline.js ./src/js/container.js ./src/js/main.js",
+    "concat-js": "concat -o ./build/main.js ./src/js/nav.js ./src/js/gallery.js ./src/js/container.js ./src/js/main.js",
     "uglify-js": "uglifyjs ./build/main.js -o ./dist/main.min.js -c -m",
     "build-js": "npm run concat-js && npm run uglify-js",
     "build-html": "minify ./src/index.html > ./dist/index.html",

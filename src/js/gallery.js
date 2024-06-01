@@ -1,4 +1,4 @@
-class Scene {
+class Gallery {
   constructor($stage) {
     this.$scene = $stage.querySelector('.scene');
     this.$tiles = $stage.querySelectorAll('.tile');

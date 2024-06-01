@@ -8,7 +8,6 @@
     
   const setupThemeToggling = () => {
     const $themeToggle = document.querySelector('.theme-toggle button');
-
     $themeToggle.addEventListener('click', () => {
       document.body.classList.toggle('theme-dark');
     });
@@ -16,7 +15,6 @@
 
   const setupSectionToggling = () => {
     const $sectionToggles = document.querySelectorAll('button.section-toggle');
-
     $sectionToggles.forEach(($toggle) => {
       $toggle.addEventListener('click', (e) => {
         const $button = e.target;
@@ -38,12 +36,12 @@
   const nav = new Nav(document.querySelector('nav'));
   nav.init();
 
-  const scene = new Scene(document.querySelector('.stage'));
-  scene.init();
+  const gallery = new Gallery(document.querySelector('.stage'));
+  gallery.init();
 
   const $containers = document.querySelectorAll('.container');
   $containers.forEach(($container) => {
-    const container = new Container($container, nav);
+    const container = new Container($container);
     container.init();
   });
 

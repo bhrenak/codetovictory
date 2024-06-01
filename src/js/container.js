@@ -1,8 +1,7 @@
 class Container {
-  constructor($element, nav) {
+  constructor($element) {
     this.$element = $element;
     this.$content = this.$element.querySelector('.container-content');
-    this.nav = nav;
   }
 
   draw(entries) {
@@ -18,10 +17,5 @@ class Container {
   init() {
     const observer = new IntersectionObserver(this.draw, {threshold:0.5});
     observer.observe(this.$element);
-    this.$content.addEventListener('transitionend', (e) => {
-      if (e.target === this.$content) {
-        if (!this.nav.isSmallScreen) this.nav.setupNav();
-      }
-    });
   }
 }

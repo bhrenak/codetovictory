@@ -9,58 +9,54 @@ nav {
   z-index: 9;
   background: var(--theme-bg-nav);
   box-shadow: inset var(--theme-shadow) 0 0 5px 1px;
-}
-nav a {
-  position: relative;
-  height: 25vh;
-  flex: auto;
-  font-size: 0.85rem;
-  text-align: center;
-  line-height: 2.5em;
-  color: var(--theme-font);
-  text-decoration: none;
-  border-bottom: 1px var(--theme-border) solid;
-  border-right: 1px var(--theme-border) solid;
-  transition: all var(--transition-timing) linear;
-}
-nav a:hover {
-  font-size: 0.9rem;
-  line-height: 2.35em;
-}
-nav div {
-  position: absolute;
-  display: none;
-  left: 0.5rem;
-  height: 25vh;
-  width: calc(100% - 0.5rem);
-  background: var(--theme-bg-content);
-  border-radius: 0.5rem 0 0 0.5rem;
-  box-shadow: var(--theme-shadow) 0px 0px 6px 2px;
-  transition: background-color var(--transition-timing);
-  border-left-width: 0.25rem;
-  border-left-style: solid;
-}
-nav div::before {
-  content: '';
-  position: absolute;
-  top: -0.5rem;
-  right: 0;
-  width: 0.5rem;
-  height: 0.5rem;
-  background: -moz-radial-gradient(0 0, circle, rgba(0,0,0,0) 0.5rem, var(--theme-bg-content) 0.5rem);
-  background: -o-radial-gradient(0 0, circle, rgba(0,0,0,0) 0.5rem, var(--theme-bg-content) 0.5rem);
-  background: -webkit-radial-gradient(0 0, circle, rgba(0,0,0,0) 0.5rem, var(--theme-bg-content) 0.5rem);
-}
-nav div::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  right: 0;
-  width: 0.5rem;
-  height: 0.5rem;
-  background: -moz-radial-gradient(0 100%, circle, rgba(0,0,0,0) 0.5rem, var(--theme-bg-content) 0.5rem);
-  background: -o-radial-gradient(0 100%, circle, rgba(0,0,0,0) 0.5rem, var(--theme-bg-content) 0.5rem);
-  background: -webkit-radial-gradient(0 100%, circle, rgba(0,0,0,0) 0.5rem, var(--theme-bg-content) 0.5rem);
+  & a {
+    position: relative;
+    height: 25vh;
+    flex: auto;
+    font-size: 0.85rem;
+    text-align: center;
+    line-height: 2.5em;
+    color: var(--theme-font);
+    text-decoration: none;
+    border-bottom: 1px var(--theme-border) solid;
+    border-right: 1px var(--theme-border) solid;
+    transition: all var(--transition-timing) linear;
+  }
+  & div {
+    position: absolute;
+    display: none;
+    left: 0.5rem;
+    height: 25vh;
+    width: calc(100% - 0.5rem);
+    background: var(--theme-bg-content);
+    border-radius: 0.5rem 0 0 0.5rem;
+    box-shadow: var(--theme-shadow) 0px 0px 6px 2px;
+    transition: background-color var(--transition-timing);
+    border-left-width: 0.25rem;
+    border-left-style: solid;
+    &::before {
+      content: '';
+      position: absolute;
+      top: -0.5rem;
+      right: 0;
+      width: 0.5rem;
+      height: 0.5rem;
+      background: -moz-radial-gradient(0 0, circle, rgba(0,0,0,0) 0.5rem, var(--theme-bg-content) 0.5rem);
+      background: -o-radial-gradient(0 0, circle, rgba(0,0,0,0) 0.5rem, var(--theme-bg-content) 0.5rem);
+      background: -webkit-radial-gradient(0 0, circle, rgba(0,0,0,0) 0.5rem, var(--theme-bg-content) 0.5rem);
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 0.5rem;
+      height: 0.5rem;
+      background: -moz-radial-gradient(0 100%, circle, rgba(0,0,0,0) 0.5rem, var(--theme-bg-content) 0.5rem);
+      background: -o-radial-gradient(0 100%, circle, rgba(0,0,0,0) 0.5rem, var(--theme-bg-content) 0.5rem);
+      background: -webkit-radial-gradient(0 100%, circle, rgba(0,0,0,0) 0.5rem, var(--theme-bg-content) 0.5rem);
+    }
+  }
 }
 
 @media(min-width:768px) {
@@ -69,29 +65,29 @@ nav div::after {
     flex-direction: column;
     width: 12.75rem;
     height: 100vh;
-  }
-  nav > div {
-    display: block;
-  }
-  nav a {
-    display: flex;
-    align-items: center;
-    text-align: left;
-    flex: auto;
-    font-size: 1.75rem;
-    line-height: 1.55em;
-    padding: 0 0 0 1.5rem;
-    border: none;
-  }
-  nav a:hover {
-    font-size: 1.85rem;
-    line-height: 2rem;
-  }
-  nav span {
-    display: flex;
-    flex: 1;
-    height: 100%;
-    align-items: center;
-    border-bottom: 1px var(--theme-border) solid;
+    & a {
+      display: flex;
+      align-items: center;
+      text-align: left;
+      flex: auto;
+      font-size: 1.75rem;
+      line-height: 1.55em;
+      padding: 0 0 0 1.5rem;
+      border: none;
+      &:hover {
+        font-size: 1.85rem;
+        line-height: 2rem;
+      }
+    }
+    & > div {
+      display: block;
+    }
+    & span {
+      display: flex;
+      flex: 1;
+      height: 100%;
+      align-items: center;
+      border-bottom: 1px var(--theme-border) solid;
+    }
   }
 }
