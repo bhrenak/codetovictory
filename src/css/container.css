@@ -16,6 +16,11 @@
       transition: opacity 1s ease-in 0.5s;
     }
   }
+  label {
+    display: block;
+    cursor: pointer;
+    position: relative;
+  }
 }
 .container-heading {
   position: relative;
@@ -46,7 +51,7 @@
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
   }
-  & span {
+  span {
     background: var(--theme-bg-accent);
     position: relative;
     display: block;

@@ -1,6 +1,6 @@
 :root {
   --transition-timing: 0.15s;
-  --border-width: 0.05rem;
+  --border-width: 1px;
   --theme-color-blue: #2bb5d9;
   --theme-color-blue-alpha-15: #2bb5d926;
   --theme-color-orange: #f94;

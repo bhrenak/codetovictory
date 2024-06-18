@@ -9,7 +9,7 @@ nav {
   z-index: 9;
   background: var(--theme-bg-nav);
   box-shadow: inset var(--theme-shadow) 0 0 5px 1px;
-  & a {
+  a {
     position: relative;
     height: 25vh;
     flex: auto;
@@ -22,7 +22,7 @@ nav {
     border-right: 1px var(--theme-border) solid;
     transition: all var(--transition-timing) linear;
   }
-  & div {
+  div {
     position: absolute;
     display: none;
     left: 0.5rem;
@@ -65,7 +65,7 @@ nav {
     flex-direction: column;
     width: 12.75rem;
     height: 100vh;
-    & a {
+    a {
       display: flex;
       align-items: center;
       text-align: left;
@@ -79,10 +79,10 @@ nav {
         line-height: 2rem;
       }
     }
-    & > div {
+    > div {
       display: block;
     }
-    & span {
+    span {
       display: flex;
       flex: 1;
       height: 100%;

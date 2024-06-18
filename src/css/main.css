@@ -6,10 +6,6 @@ img {
   max-width: 100%;
   object-fit: cover;
 }
-label {
-  cursor: pointer;
-  position: relative;
-}
 .wrapper {
   max-width: 1440px;
   margin: auto;
@@ -105,8 +101,8 @@ button, a.button {
   text-align: center;
   img {
     width: 100%;
-    max-width: 294px;
-    max-height: 294px;
+    max-width: 244px;
+    max-height: 244px;
     border-radius: 50%;
     border: 1rem #fff solid;
     box-shadow: 0 0 0.5rem var(--theme-shadow);
