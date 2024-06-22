@@ -5,13 +5,6 @@
       document.querySelector('#overlay').classList.add('hide');
     });
   };
-    
-  const setupThemeToggling = () => {
-    const $themeToggle = document.querySelector('.theme-toggle button');
-    $themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('theme-dark');
-    });
-  };
 
   const setupSectionToggling = () => {
     const $sectionToggles = document.querySelectorAll('button.section-toggle');
@@ -30,9 +23,11 @@
 
   /* SETUP COMPONENTS */
   hideLoadingScreen();
-  setupThemeToggling();
   setupSectionToggling();
 
+  const theme = new Theme(document.querySelector('.theme-toggle button'));
+  theme.init();
+  
   const nav = new Nav(document.querySelector('nav'));
   nav.init();
 

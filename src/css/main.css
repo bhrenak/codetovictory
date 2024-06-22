@@ -49,14 +49,17 @@ section {
   }
 }
 button, a.button {
-  border: 1px var(--theme-border) solid;
+  border: 1px var(--theme-font-accent) solid;
   border-radius: 0.2rem;
   font-size: 0.825rem;
-  color: var(--theme-font-accent);
   text-decoration: none;
-  background: var(--theme-bg-accent);
+  background: var(--theme-font-accent);
+  color: var(--theme-bg-accent);
+  border-color: var(--theme-font-accent);
   padding: 0.3rem 0.5rem;
   cursor: pointer;
+  box-shadow: 0 0.03rem 0.1rem var(--theme-border);
+  transform: scale(1);
   transition: all var(--transition-timing);
   &:active, &:focus {
     outline: none;
@@ -80,7 +83,7 @@ button, a.button {
   left: 100%;
   z-index: 9;
   button {
-    padding: 0.25rem 0.4rem 0.1rem;
+    padding: 0.2rem 0.3rem 0;
     font-size: 1.15rem;
     line-height: 1em;
     margin: 0;
@@ -110,13 +113,19 @@ button, a.button {
 }
 
 @media(hover: hover) and (pointer: fine) {
-  button:hover,
-  a.button:hover {
-    background: var(--theme-font-accent);
-    color: var(--theme-bg-accent);
-    border-color: var(--theme-font-accent);
-    box-shadow: 0 0.15rem 0.5rem var(--theme-border);
-    transform: scale(1.05);
+  button,
+  a.button {
+    &:hover {
+      background: var(--theme-bg-accent);
+      color: var(--theme-font-accent);
+      border-color: var(--theme-border);
+      box-shadow: 0 0.15rem 0.5rem var(--theme-border);
+      transform: scale(1.05);
+    }
+    &:active {
+      box-shadow: 0 0.03rem 0.1rem var(--theme-border);
+      transform: scale(1);
+    }
   }
 }
 
@@ -148,16 +157,16 @@ button, a.button {
   }
   .theme-toggle {
     top: 1rem;
-      button {
+    button {
       max-width: 1.5rem;
       padding: 0.25rem 0 0;
       border-right: none;
-      border-top: 1px var(--theme-border) solid;
+      border-top: 1px var(--theme-font-accent) solid;
       border-top-left-radius: 0.2rem;
       border-bottom-right-radius: 0;
     }
     button:hover {
-      border-color: var(--theme-font-accent);
+      border-color: var(--theme-border);
     }
   }
   a.button.download {

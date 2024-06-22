@@ -48,8 +48,10 @@ class Nav {
         break;
       }
     }
-    this.$body.style.setProperty('--scroll-position', `${position*-1}s`);
-    this.$viewBox.style.top = `${(this.windowHeight - this.$viewBox.offsetHeight) * progress}px`;
+    requestAnimationFrame(() => {
+      this.$body.style.setProperty('--scroll-position', `${position*-1}s`);
+      this.$viewBox.style.transform = `translateY(${(this.windowHeight - this.$viewBox.offsetHeight) * progress}px)`;
+    });
   }
 
   setupNav() {
