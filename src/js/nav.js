@@ -37,20 +37,18 @@ class Nav {
     const top = this.$body.scrollTop;
     const progress = top / (this.sumHeight - this.windowHeight);
     let position = 0;
-    let sum = 0;
+    let above = 0;
     for (const [index, height] of this.sectionHeights.entries()) {
-      sum += height;
-      if (top < sum) {
+      above += height;
+      if (top < above && top + this.windowHeight > above) {
         position = index * 0.25;
-        if (top + this.windowHeight > sum) {
-          position += (top + this.windowHeight - sum) / this.windowHeight * 0.25;
-        }
+        position += (top + this.windowHeight - above) / this.windowHeight * 0.25;
         break;
       }
     }
     requestAnimationFrame(() => {
-      this.$body.style.setProperty('--scroll-position', `${position*-1}s`);
-      this.$viewBox.style.transform = `translateY(${(this.windowHeight - this.$viewBox.offsetHeight) * progress}px)`;
+      this.$viewBox.style.setProperty('--active-color', `${position*-1}s`);
+      this.$viewBox.style.setProperty('--scroll-translate', `translateY(${(this.windowHeight - this.$viewBox.offsetHeight) * progress}px)`);
     });
   }
 

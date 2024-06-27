@@ -34,6 +34,11 @@ nav {
     transition: background-color var(--transition-timing);
     border-left-width: 0.25rem;
     border-left-style: solid;
+    animation-duration: 1s;
+    animation-name: border-active-color;
+    animation-play-state: paused;
+    animation-delay: var(--active-color, 0);
+    animation-timing-function: linear;
     &::before {
       content: '';
       position: absolute;
@@ -81,6 +86,7 @@ nav {
     }
     > div {
       display: block;
+      transform: var(--scroll-translate);
     }
     span {
       display: flex;

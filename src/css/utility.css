@@ -62,13 +62,6 @@
 .color-green {
   color: var(--theme-color-green);
 }
-.active-border {
-  animation-duration: 1s;
-  animation-name: border-active-color;
-  animation-play-state: paused;
-  animation-delay: var(--scroll-position, 0);
-  animation-timing-function: linear;
-}
 
 @media(min-width:768px) {
   .grid.col-3 {
@@ -83,10 +76,5 @@
   .grid.col-3 {
     grid-auto-flow: row;
     grid-template-areas: "a a a";
-  }
-}
-@media(min-width:1151px) {
-  .masonry {
-    gap: 1rem;
   }
 }
