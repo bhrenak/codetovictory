@@ -11,7 +11,6 @@ nav {
   box-shadow: inset var(--theme-shadow) 0 0 5px 1px;
   a {
     position: relative;
-    height: 25vh;
     flex: auto;
     font-size: 0.85rem;
     text-align: center;
@@ -26,12 +25,12 @@ nav {
     position: absolute;
     display: none;
     left: 0.5rem;
-    height: 25vh;
+    height: calc(25vh - 1px);
     width: calc(100% - 0.5rem);
     background: var(--theme-bg-content);
     border-radius: 0.5rem 0 0 0.5rem;
     box-shadow: var(--theme-shadow) 0px 0px 6px 2px;
-    transition: background-color var(--transition-timing);
+    transition: transform 0.35s;
     border-left-width: 0.25rem;
     border-left-style: solid;
     animation-duration: 1s;
@@ -74,14 +73,16 @@ nav {
       display: flex;
       align-items: center;
       text-align: left;
-      flex: auto;
+      flex: 0 0 25vh;
       font-size: 1.75rem;
       line-height: 1.55em;
-      padding: 0 0 0 1.5rem;
+      padding: 0 0 0 1rem;
       border: none;
       &:hover {
         font-size: 1.85rem;
-        line-height: 2rem;
+      }
+      &:active {
+        font-size: 1.75rem;
       }
     }
     > div {
@@ -94,6 +95,8 @@ nav {
       height: 100%;
       align-items: center;
       border-bottom: 1px var(--theme-border) solid;
+      margin-right: 1rem;
+      padding-left: 0.5rem;
     }
   }
 }

@@ -41,10 +41,11 @@
 .margin-top-half {
   margin-top: 0.5rem;
 }
-.margin-top-1 {
+.margin-top-1 ,
+.margin-top-1-desktop-half {
   margin-top: 1rem;
 }
-.margin-top-1-half {
+.margin-top-threehalfs {
   margin-top: 1.5rem;
 }
 .nowrap {
@@ -67,6 +68,9 @@
   .grid.col-3 {
     grid-auto-flow: row;
     grid-template-areas: "a a";
+  }
+  .margin-top-1-desktop-half {
+    margin-top: 0.5rem;
   }
 }
 @media(min-width:1024px) {

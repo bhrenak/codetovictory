@@ -31,10 +31,10 @@
   &::before {
     content: '';
     position: absolute;
-    top: -1px;
-    bottom: -1px;
-    right: -1rem;
-    left: -1px;
+    top: 0;
+    bottom: 0;
+    right: -100%;
+    left: 0;
     background-color: var(--section-color);
     transform: rotateZ(-90deg) translate(calc(-100% - 1px), calc(-100% - 1px));
     transform-origin: top left;
@@ -124,10 +124,10 @@ input.container-toggle {
   &::before {
     content: '';
     position: absolute;
-    top: -1px;
-    bottom: -1px;
-    right: -1rem;
-    left: -1px;
+    top: 0;
+    bottom: 0;
+    right: -100%;
+    left: 0;
     background-color: var(--section-color);
     transform: rotateZ(-90deg) translate(calc(-100% - 1px), calc(-100% - 1px));
     transform-origin: top left;
