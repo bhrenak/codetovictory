@@ -26,6 +26,7 @@
     "uglify-js": "^3.17.4"
   },
   "devDependencies": {
-    "lightningcss-cli": "^1.25.1"
+    "lightningcss-cli": "^1.25.1",
+    "rollup": "^4.21.2"
   }
 }
