@@ -16,6 +16,8 @@
   --theme-border: #ccc;
   --theme-font: #444;
   --theme-font-accent: #666;
+  --theme-button: #666;
+  --theme-button-accent: #444;
   --theme-link: #1ba5c9;
   --theme-bullet: #2bb5d9;
   --theme-shadow: #cdcdcd;
@@ -37,6 +39,8 @@ body.theme-dark {
   --theme-border: #222;
   --theme-font: #fcfcfc;
   --theme-font-accent: #eee;
+  --theme-button: #f2f2f2;
+  --theme-button-accent: #fcfcfc;
   --theme-link: #4bd5f9;
   --theme-bullet: #4bd5f9;
   --theme-shadow: #2a2a2a;

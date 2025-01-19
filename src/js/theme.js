@@ -1,30 +1,23 @@
-class Theme {
-  constructor($toggle) {
-    this.theme = localStorage.getItem('ctv-theme');
-    this.toggle = $toggle;
+function setTheme(theme) {
+  if (theme === 'dark') {
+    localStorage.setItem('ctv-theme','dark');
+    document.body.classList.add('theme-dark');
+    document.body.classList.remove('theme-light');
+  } else {
+    localStorage.setItem('ctv-theme','light');
+    document.body.classList.add('theme-light');
+    document.body.classList.remove('theme-dark');
   }
+}
 
-  setTheme() {
-    if (this.theme === 'dark') {
-      localStorage.setItem('ctv-theme','dark');
-      document.body.classList.add('theme-dark');
-      document.body.classList.remove('theme-light');
-    } else {
-      localStorage.setItem('ctv-theme','light');
-      document.body.classList.add('theme-light');
-      document.body.classList.remove('theme-dark');
-    }
-  }
+function toggleTheme() {
+  let theme = localStorage.getItem('ctv-theme');
+  theme = (theme === 'dark') ? 'light' : 'dark';
+  setTheme(theme);
+}
 
-  toggleTheme() {
-    this.theme = (this.theme === 'dark') ? 'light' : 'dark';
-    this.setTheme();
-  }
-  
-  init() {
-    this.setTheme();
-    this.toggle.addEventListener('click', () => {
-      this.toggleTheme();
-    });
-  };
+export function createTheme($toggle) {
+  const theme = localStorage.getItem('ctv-theme');
+  setTheme(theme);
+  $toggle.addEventListener('click', toggleTheme);
 }

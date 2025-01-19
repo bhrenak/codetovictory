@@ -53,9 +53,9 @@ button, a.button {
   border-radius: 0.2rem;
   font-size: 0.825rem;
   text-decoration: none;
-  background: var(--theme-font-accent);
+  background: var(--theme-button);
   color: var(--theme-bg-accent);
-  border-color: var(--theme-font-accent);
+  border-color: var(--theme-button-accent);
   padding: 0.3rem 0.5rem;
   cursor: pointer;
   box-shadow: 0 0.03rem 0.1rem var(--theme-border);

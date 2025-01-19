@@ -30,20 +30,22 @@ class Gallery {
       this.$back.classList.remove('hide');
     }
   }
+}
 
-  init() {
-    this.$tiles.forEach(($tile,index) => {
-      $tile.addEventListener('click', () => {
-        this.setCurrentTile(index);
-      });
+export function createGallery($stage) {
+  const gallery = new Gallery($stage);
+
+  gallery.$tiles.forEach(($tile,index) => {
+    $tile.addEventListener('click', () => {
+      gallery.setCurrentTile(index);
     });
-  
-    this.$back.addEventListener('click', () => {
-      const $current = this.$scene.querySelector('.current');
-      const index = [...$current.parentNode.children].indexOf($current);
-      if (index < this.$tiles.length) {
-        this.setCurrentTile(index);
-      }
-    });
-  }
+  });
+
+  gallery.$back.addEventListener('click', () => {
+    const $current = gallery.$scene.querySelector('.current');
+    const index = [...$current.parentNode.children].indexOf($current);
+    if (index < gallery.$tiles.length) {
+      gallery.setCurrentTile(index);
+    }
+  });
 }
